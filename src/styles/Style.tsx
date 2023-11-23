@@ -172,7 +172,6 @@ const botonComprarCarrito = css`
   position: sticky;
   bottom: 100px;
 `
-
 const botonCarritoLink = css`
   background-color: transparent;
   border: none;
