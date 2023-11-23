@@ -4,10 +4,14 @@ import {FaCartPlus} from "react-icons/fa"
 import {LiaEyeSolid} from "react-icons/lia"
 import { articulos } from "../../Api/ApiTienda"
 import { IoArrowBackOutline } from "react-icons/io5";
+import CarritoAñadir from "../../carritoCompras/CarritoAñadir";
 
 export const Consolas = () => {
 
   const consolas = articulos.consolas;
+  const {
+    anadirCarritoStore
+  } = CarritoAñadir();
 
   return (
     <ContenedorArticulosConjuntoStyle>
@@ -17,7 +21,7 @@ export const Consolas = () => {
       {consolas.map(item => {
         return (
           <ArticulosConjuntoStyle key={item.id}>
-            <ArticulosDescuentoStyle>{`-${item.descuento}%`}</ArticulosDescuentoStyle>
+            {item.descuento > 0 && <ArticulosDescuentoStyle>{`-${item.descuento}%`}</ArticulosDescuentoStyle>}
             <ArticulosTituloStyle>{item.titulo}</ArticulosTituloStyle>
             <ArticulosImagenStyle
               src={item.imagen} 
@@ -33,7 +37,8 @@ export const Consolas = () => {
                   precio: item.precio,
                   imagen: item.imagen,
                   identificacion: item.id,
-                  descripcion: item.descripcion
+                  descripcion: item.descripcion,
+                  cantidad: item.cantidad,
                 }} 
                 padding="10px" 
                 bRadius="5%">
@@ -43,7 +48,18 @@ export const Consolas = () => {
                 </IconoStyle>
               </BotonConLinkStyle>
               {/*Agregar al carrito*/}
-              <BotonStyle padding="10px" bRadius="5%">
+              <BotonStyle 
+                onClick={({id,titulo,descuento,descripcion,precio,imagen,cantidad}) => anadirCarritoStore({
+                  titulo: item.titulo,
+                  descuento: item.descuento,
+                  descripcion:item.descripcion,
+                  precio: item.precio,
+                  imagen: item.imagen,
+                  id:item.id,
+                  cantidad: item.cantidad
+                })} 
+                padding="10px" 
+                bRadius="5%">
                 Agregar
                 <IconoStyle>
                   <FaCartPlus/>

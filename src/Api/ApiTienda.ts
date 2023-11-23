@@ -63,6 +63,7 @@ interface Pantalon {
   imagen:string;
   descuento?:number;
   descripcion:string | null;
+  cantidad:number;
 }
 interface Consolas {
   id: string;
@@ -71,6 +72,7 @@ interface Consolas {
   imagen:string;
   descuento?:number;
   descripcion: string | null;
+  cantidad:number;
 }
 interface Zapatos {
   id: string;
@@ -79,6 +81,7 @@ interface Zapatos {
   imagen:string;
   descuento?:number;
   descripcion: string | null;
+  cantidad:number;
 }
 interface Alcohol {
   id: string;
@@ -87,6 +90,7 @@ interface Alcohol {
   imagen:string;
   descuento?:number;
   descripcion:string | null;
+  cantidad:number;
 }
 interface Relojes {
   id: string;
@@ -95,6 +99,7 @@ interface Relojes {
   imagen:string;
   descuento?:number;
   descripcion:string | null;
+  cantidad:number;
 }
 interface Perfumes {
   id: string;
@@ -103,6 +108,7 @@ interface Perfumes {
   imagen:string;
   descuento?:number;
   descripcion:string | null;
+  cantidad:number;
 }
 interface Articulos {
   camisas: Camisa[],
@@ -209,6 +215,7 @@ export const articulos: Articulos = {
       precio: 20000,
       imagen: pantalonVerde,
       descuento: 30,
+      cantidad:1,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
       Egestas dui id ornare arcu. Dui vivamus arcu felis bibendum ut tristique et egestas quis. Donec ultrices tincidunt arcu non sodales neque sodales ut. Sed egestas egestas fringilla phasellus. Fames ac turpis egestas maecenas pharetra convallis posuere. Aenean euismod elementum nisi quis. Libero id faucibus nisl tincidunt eget. Semper viverra nam libero justo laoreet sit. Duis ultricies lacus sed turpis tincidunt id aliquet. Eget felis eget nunc lobortis. Sed arcu non odio euismod lacinia at. Malesuada nunc vel risus commodo viverra maecenas.
@@ -225,6 +232,7 @@ export const articulos: Articulos = {
       precio:80000,
       imagen: pantalonRojo,
       descuento:7,
+      cantidad:1,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
       Egestas dui id ornare arcu. Dui vivamus arcu felis bibendum ut tristique et egestas quis. Donec ultrices tincidunt arcu non sodales neque sodales ut. Sed egestas egestas fringilla phasellus. Fames ac turpis egestas maecenas pharetra convallis posuere. Aenean euismod elementum nisi quis. Libero id faucibus nisl tincidunt eget. Semper viverra nam libero justo laoreet sit. Duis ultricies lacus sed turpis tincidunt id aliquet. Eget felis eget nunc lobortis. Sed arcu non odio euismod lacinia at. Malesuada nunc vel risus commodo viverra maecenas.
@@ -241,6 +249,7 @@ export const articulos: Articulos = {
       precio:200000,
       imagen: pantalonAzul,
       descuento:30,
+      cantidad:1,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
       Egestas dui id ornare arcu. Dui vivamus arcu felis bibendum ut tristique et egestas quis. Donec ultrices tincidunt arcu non sodales neque sodales ut. Sed egestas egestas fringilla phasellus. Fames ac turpis egestas maecenas pharetra convallis posuere. Aenean euismod elementum nisi quis. Libero id faucibus nisl tincidunt eget. Semper viverra nam libero justo laoreet sit. Duis ultricies lacus sed turpis tincidunt id aliquet. Eget felis eget nunc lobortis. Sed arcu non odio euismod lacinia at. Malesuada nunc vel risus commodo viverra maecenas.
@@ -257,6 +266,7 @@ export const articulos: Articulos = {
       precio: 150000,
       imagen: pantalonNegro,
       descuento: 2,
+      cantidad:1,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
       Egestas dui id ornare arcu. Dui vivamus arcu felis bibendum ut tristique et egestas quis. Donec ultrices tincidunt arcu non sodales neque sodales ut. Sed egestas egestas fringilla phasellus. Fames ac turpis egestas maecenas pharetra convallis posuere. Aenean euismod elementum nisi quis. Libero id faucibus nisl tincidunt eget. Semper viverra nam libero justo laoreet sit. Duis ultricies lacus sed turpis tincidunt id aliquet. Eget felis eget nunc lobortis. Sed arcu non odio euismod lacinia at. Malesuada nunc vel risus commodo viverra maecenas.
@@ -271,6 +281,7 @@ export const articulos: Articulos = {
       id:nanoid(),
       titulo:"pantalon cafe",
       precio: 20000,
+      cantidad:1,
       imagen: pantalonCafe,
       descuento:3,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
@@ -286,6 +297,7 @@ export const articulos: Articulos = {
   ],
   zapatos : [
     {
+      cantidad:1,
       id:nanoid(),
       titulo:"zapatos verde",
       precio: 80000,
@@ -303,6 +315,7 @@ export const articulos: Articulos = {
     },
     {
       id:nanoid(),
+      cantidad:1,
       titulo:"zapato rojo",
       precio:70000,
       imagen: zapatoRojo,
@@ -319,6 +332,7 @@ export const articulos: Articulos = {
     },
     {
       id:nanoid(),
+      cantidad:1,
       titulo:"zapatos azul",
       precio:120000,
       imagen: zapatoAzul,
@@ -335,6 +349,7 @@ export const articulos: Articulos = {
     },
     {
       id:nanoid(),
+      cantidad:1,
       titulo:"zapatos negro",
       precio: 250000,
       imagen: zapatoNegro,
@@ -352,6 +367,7 @@ export const articulos: Articulos = {
     {
       id:nanoid(),
       titulo:"zapatos cafe",
+      cantidad:1,
       precio: 40000,
       imagen: zapatoCafe,
       descuento:0,
@@ -373,6 +389,7 @@ export const articulos: Articulos = {
       precio: 1000000,
       imagen: xbox360,
       descuento: 40,
+      cantidad:1,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
       Egestas dui id ornare arcu. Dui vivamus arcu felis bibendum ut tristique et egestas quis. Donec ultrices tincidunt arcu non sodales neque sodales ut. Sed egestas egestas fringilla phasellus. Fames ac turpis egestas maecenas pharetra convallis posuere. Aenean euismod elementum nisi quis. Libero id faucibus nisl tincidunt eget. Semper viverra nam libero justo laoreet sit. Duis ultricies lacus sed turpis tincidunt id aliquet. Eget felis eget nunc lobortis. Sed arcu non odio euismod lacinia at. Malesuada nunc vel risus commodo viverra maecenas.
@@ -388,6 +405,7 @@ export const articulos: Articulos = {
       titulo:"play Station 4",
       precio:2500000,
       imagen: playStation4,
+      cantidad:1,
       descuento:25,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
@@ -403,6 +421,7 @@ export const articulos: Articulos = {
       id:nanoid(),
       titulo:"wii",
       precio:800000,
+      cantidad:1,
       imagen: wii,
       descuento:60,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
@@ -419,6 +438,7 @@ export const articulos: Articulos = {
       id:nanoid(),
       titulo:"nintendo switch",
       precio: 1600000,
+      cantidad:1,
       imagen: nintendoSwitch,
       descuento: 60,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
@@ -435,6 +455,7 @@ export const articulos: Articulos = {
       id:nanoid(),
       titulo:"xbox series x",
       precio: 5000000,
+      cantidad:1,
       imagen: xboxSeriesX,
       descuento:13,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
@@ -452,6 +473,7 @@ export const articulos: Articulos = {
     {
       id:nanoid(),
       titulo:"bicardi",
+      cantidad:1,
       precio: 8000000,
       imagen: bicardi,
       descuento: 10,
@@ -469,6 +491,7 @@ export const articulos: Articulos = {
     {
       id:nanoid(),
       titulo:"label",
+      cantidad:1,
       precio:10000000,
       imagen: label,
       descuento:5,
@@ -487,6 +510,7 @@ export const articulos: Articulos = {
       id:nanoid(),
       titulo:"gordons",
       precio:7000000,
+      cantidad:1,
       imagen: gordons,
       descuento:2,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
@@ -503,6 +527,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
     {
       id:nanoid(),
       titulo:"brandi",
+      cantidad:1,
       precio: 700000,
       imagen: brandi,
       descuento: 25,
@@ -520,6 +545,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
     {
       id:nanoid(),
       titulo:"zedda piras",
+      cantidad:1,
       precio: 5000000,
       imagen: zedda_piras,
       descuento:17,
@@ -540,6 +566,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       id:nanoid(),
       titulo:"versace",
       precio: 1200000,
+      cantidad:1,
       imagen: versace,
       descuento: 5,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
@@ -556,6 +583,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       id:nanoid(),
       titulo:"paris",
       precio:250000,
+      cantidad:1,
       imagen: paris,
       descuento:0,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
@@ -573,6 +601,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       titulo:"roger",
       precio:800000,
       imagen: roger,
+      cantidad:1,
       descuento:8,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
@@ -589,6 +618,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       titulo:"clive",
       precio: 1800000,
       imagen: clive,
+      cantidad:1,
       descuento: 12,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
@@ -605,6 +635,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       titulo:"tresor",
       precio: 30000000,
       imagen: tresor,
+      cantidad:1,
       descuento:6,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
@@ -622,6 +653,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       id:nanoid(),
       titulo:"reloj digital",
       precio: 60000,
+      cantidad:1,
       imagen: digital,
       descuento: 80,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
@@ -639,6 +671,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       titulo:"reloj guess",
       precio:250000,
       imagen: guess,
+      cantidad:1,
       descuento:15,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
@@ -655,6 +688,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       titulo:"reloj gucci",
       precio:800000,
       imagen: gucci,
+      cantidad:1,
       descuento:0 ,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
@@ -671,6 +705,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       titulo:"reloj jecob&co",
       precio: 1600000,
       imagen: jecob,
+      cantidad:1,
       descuento: 0,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 
@@ -687,6 +722,7 @@ Dignissim cras tincidunt lobortis feugiat vivamus at augue. Morbi non arcu risus
       titulo:"casio",
       precio: 50000,
       imagen: casio,
+      cantidad:1,
       descuento:10,
       descripcion:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus. Pellentesque habitant morbi tristique senectus. Lorem ipsum dolor sit amet. Hac habitasse platea dictumst vestibulum rhoncus est. Eget nunc scelerisque viverra mauris in aliquam sem. Pellentesque elit eget gravida cum sociis natoque penatibus. Cursus turpis massa tincidunt dui. Pretium lectus quam id leo in vitae turpis massa. Vitae congue eu consequat ac. Faucibus ornare suspendisse sed nisi. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Aenean vel elit scelerisque mauris. Tellus id interdum velit laoreet id donec ultrices tincidunt arcu. Integer eget aliquet nibh praesent tristique. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Facilisi etiam dignissim diam quis enim. Nec ullamcorper sit amet risus nullam eget.
 

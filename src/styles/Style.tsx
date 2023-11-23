@@ -53,12 +53,21 @@ export const BotonLink = styled(Link)`
   color: #000;
 `
 export const CantidadCarritoStyle = styled.span`
-  font-size: 18px;
-  position: absolute;
+  font-size: 12px;
+  position: ${props => props.position || null};
   bottom:5px;
   font-weight: 700;
   z-index: 2;
-  color: rgb(255, 0, 0);
+  top: 0;
+  right: 0;
+  color: red;
+  border: ${props => props.border || null};
+  border-radius: 50%;
+  width: ${props => props.width || null};
+  height: ${props => props.height || null};
+  display: grid;
+  place-items: center;
+  background-color: ${props => props.bColor || null};
 `
 
 // usuario
@@ -129,6 +138,7 @@ export const BotonStyle = styled.button`
   ${props => props.botonIconoRemove && botonIconoRemove}
   width: ${props => props.width || null};
   margin-top: ${props => props.marginTop || null};
+
   &:hover {
     cursor: pointer;
   }
@@ -180,17 +190,18 @@ export const ContenedorBotonesStyle = styled.div`
 `
 const contenedorCarritoStyle = css`
   position: absolute;
+  height: auto;
   width: 100px;
+  padding: 0 10px;
   right: 0;
   bottom: 10px;
   display: flex;
   margin-right: 10px;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
   box-shadow: 1px 1px 1px 1px #ddd;
   border-radius: 10px;
-`
+`;
 // articulos conjuntos 
 export const ContenedorArticulosConjuntoStyle = styled.main`
   height: auto;
@@ -198,10 +209,10 @@ export const ContenedorArticulosConjuntoStyle = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 50px;
+  row-gap: 20px;
   font-family: 'Montserrat', sans-serif;
   text-align:center;
-  padding: 50px 0;
+  padding: 20px 0;
   width: 100%;
   ${props => props.position || null}
 `
@@ -230,6 +241,13 @@ export const ArticulosConjuntoStyle = styled.article`
   box-shadow: 1px -1px  5px 2px #ccc;
   position: ${props => props.position || "relative"};
   animation: ${showArticulosConjuntoStyle} 1s ease-in-out;
+  ${props => props.pagarArticulosCarrito && pagarArticulosCarrito}
+`
+const pagarArticulosCarrito = css`
+  display: grid;
+  grid-template-columns: auto auto;
+  width:80%;
+  padding: 20px;
 `
 export const ArticulosTituloStyle = styled.h3`
   font-size: 20px;
@@ -245,6 +263,7 @@ export const ArticulosImagenStyle = styled.img`
   ${props => props.imagenDescripcion && imagenDescripcion}
   ${props => props.imagenDeCarrito && imagenDeCarrito}
   ${props => props.imagenDeCarritoNoArticulos && imagenDeCarritoNoArticulos}
+  ${props => props.imagenDeRutaNoEncontrada && imagenDeRutaNoEncontrada}
 `
 const imagenDeCarga = css`
   width: 100%;
@@ -267,6 +286,11 @@ const imagenDeCarrito = css`
   position: absolute;
   left: 10px;
   top:10px;
+`
+const imagenDeRutaNoEncontrada = css`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `
 const imagenDeCarritoNoArticulos = css`
   width: 100%;
@@ -371,5 +395,16 @@ export const Text = styled.p`
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   text-transform: capitalize;
-  font-weight: 700;
+  font-weight: 200;
+  ${props => props.textoCarrito && textoCarrito}
+  text-align:${props => props.tAlign || null};
+`
+const textoCarrito = css`
+  font-weight: 400;
+  color: #000;
+  padding: ${props => props.padding || null};
+  align-self: flex-start;
+  font-weight: 200;
+  font-size: 15px;
+  width: 100%;
 `
