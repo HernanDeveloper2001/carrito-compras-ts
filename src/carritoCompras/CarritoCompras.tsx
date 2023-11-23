@@ -10,7 +10,8 @@ import {
   CarritoArticulo,
   ContenedorBotonesStyle,
   BotonStyle, 
-  IconoStyle 
+  IconoStyle,
+  Text,
 } from './../styles/Style';
 
 import { FaTrashAlt,FaMinusCircle  } from "react-icons/fa";
@@ -38,11 +39,17 @@ export const CarritoCompras: React.FC = () => {
     añadirArticulos,
   } = carritoDatos();
 
-  
+
   // Agrupar los objetos por su id
   const grupos: Record<string, { item: Articulo, cantidad: number }> = {};
 
   const cantidadTotal = articulosGuardados.reduce((total, item) => total + item.cantidad, 0);
+
+  const subTotal = articulosGuardados.reduce((total,item) => total + item.precio, 0);
+
+  const precioTotal = articulosGuardados.reduce((acc, item) => acc + (item.precio * (1 - item.descuento / 100)), 0);
+
+  const descuentoTotal = articulosGuardados.reduce((acc, item) => acc + (item.precio * (item.descuento / 100)), 0);
 
   articulosGuardados.map((item) : void => {
     const { id } = item;
@@ -66,80 +73,90 @@ export const CarritoCompras: React.FC = () => {
     })
   }
 
-  //disminuir el carrito
-  function disminuirCarritoStore(){
-    
-  }
-
 
   // Renderizar componentes para cada grupo
   const componentes = Object.values(grupos).map((grupo) => {
     const { item ,cantidad } = grupo;
-    const { id, titulo, descripcion, precio, descuento, imagen} = item;
+    const { id, titulo, descripcion, precio, descuento, imagen, } = item;
+
     const precio_con_descuento = precio - (precio * (descuento / 100));
+
+    const precio_original = precio * cantidad
+
     const precio_con_cantidad = precio_con_descuento * cantidad;
 
     return (
-      <ArticulosConjuntoStyle 
-        position="relative"
-        height="60px"
-        key={id}>
+        <ArticulosConjuntoStyle
+          position="relative"
+          height="60px"
+          key={id}>
 
-        <BotonStyle 
-          botonIconoRemove 
-          onClick={() => quitarArticulo(id)}>
-          <IconoStyle>
-            <FaCircleXmark size={20}/>
-          </IconoStyle>
-        </BotonStyle>
-
-        <ArticulosImagenStyle imagenDeCarrito src={imagen} />
-
-        <CarritoArticulo>
-          <ArticulosTituloStyle>
-            {titulo}
-          </ArticulosTituloStyle>
-          <PrecioArticuloStyle>
-            {`$ ${precio}`}
-          </PrecioArticuloStyle>
-          <DescuentoDescripcionStyle>
-            {`$ ${precio_con_cantidad}`}
-          </DescuentoDescripcionStyle>
-        </CarritoArticulo>
-
-        <ContenedorBotonesStyle contenedorCarritoStyle>
-          
           <BotonStyle 
-            botonesCarritoStyle
-            onClick={() => decrementarArticulo(id)}>
+            botonIconoRemove 
+            onClick={() => quitarArticulo(id)}>
             <IconoStyle>
-              <FaMinusCircle /> 
-            </IconoStyle>
-          </BotonStyle>
-    
-          <CantidadCarritoStyle>
-            {`${cantidad}`}
-          </CantidadCarritoStyle>
-
-          <BotonStyle
-            onClick={(id,precio, descripcion, descuento, titulo, imagen, cantidad) => añadirCarritoStore({
-              id: item.id,
-              precio: item.precio,
-              cantidad: item.cantidad,
-              descripcion: item.descripcion,
-              imagen: item.imagen,
-              titulo: item.titulo,
-              descuento: item.descuento,
-            })} 
-            botonesCarritoStyle>
-            <IconoStyle>
-              <IoMdAddCircleOutline size={25} /> 
+              <FaCircleXmark size={20}/>
             </IconoStyle>
           </BotonStyle>
 
-        </ContenedorBotonesStyle>
+          <ArticulosImagenStyle imagenDeCarrito src={imagen} />
 
-      </ArticulosConjuntoStyle>
+          <CarritoArticulo>
+            <ArticulosTituloStyle>
+              {titulo}
+            </ArticulosTituloStyle>
+            <PrecioArticuloStyle>
+              {`$ ${precio_original}`}
+            </PrecioArticuloStyle>
+            <DescuentoDescripcionStyle>
+              {`$ ${precio_con_cantidad}`}
+            </DescuentoDescripcionStyle>
+          </CarritoArticulo>
+
+          <ContenedorBotonesStyle contenedorCarritoStyle>
+            
+            {
+              cantidad > 1
+              ? <BotonStyle 
+                  botonesCarritoStyle
+                  onClick={() => decrementarArticulo(id)}>
+                  <IconoStyle>
+                    <FaMinusCircle /> 
+                  </IconoStyle>
+                </BotonStyle>
+              : <BotonStyle 
+                  botonesCarritoStyle
+                  onClick={() => decrementarArticulo(id)}>
+                  <IconoStyle>
+                    <FaTrashAlt /> 
+                  </IconoStyle>
+                </BotonStyle>
+            }
+            
+            <CantidadCarritoStyle
+              width={"40%"}
+              heigth={"40%"}>
+              {`${cantidad}`}
+            </CantidadCarritoStyle>
+
+            <BotonStyle
+              onClick={(id,precio, descripcion, descuento, titulo, imagen, cantidad) => añadirCarritoStore({
+                id: item.id,
+                precio: item.precio,
+                cantidad: item.cantidad,
+                descripcion: item.descripcion,
+                imagen: item.imagen,
+                titulo: item.titulo,
+                descuento: item.descuento,
+              })} 
+              botonesCarritoStyle>
+              <IconoStyle>
+                <IoMdAddCircleOutline /> 
+              </IconoStyle>
+            </BotonStyle>
+
+          </ContenedorBotonesStyle>
+        </ArticulosConjuntoStyle>
     );
   });
 
@@ -152,6 +169,42 @@ export const CarritoCompras: React.FC = () => {
         imagenDeCarritoNoArticulos 
         src={imagenCarritoVacio} />
     }
+    {
+      cantidadTotal > 0 
+      && (
+        <>
+          <Text textoCarrito tAlign="left" padding="0 20px">{`${cantidadTotal} Productos`}</Text>
+
+          <ArticulosConjuntoStyle pagarArticulosCarrito>
+            <Text textoCarrito tAlign="left">
+              Subtotal:
+            </Text>
+            <Text textoCarrito tAlign="right">
+              {`$ ${subTotal}`}
+            </Text>
+
+            <Text textoCarrito tAlign="left">
+              Descuento en productos:
+            </Text>
+            <Text textoCarrito tAlign="right">
+              {`-$ ${descuentoTotal}`}
+            </Text>
+
+            <Text textoCarrito tAlign="left">
+              Total:
+            </Text>
+            <Text textoCarrito tAlign="right">
+              {`$ ${precioTotal}`}
+            </Text>
+          </ArticulosConjuntoStyle>
+          <BotonStyle botonComprarCarrito>
+            Ir a pagar / Total: {`$ ${precioTotal}`}
+          </BotonStyle>
+        </>
+      )
+    }
+    
+    
   </ContenedorArticulosConjuntoStyle>);
 };
 

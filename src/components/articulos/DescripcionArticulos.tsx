@@ -1,26 +1,46 @@
 import { useParams, useLocation } from "react-router-dom"
-
+import CarritoAñadir from "../../carritoCompras/CarritoAñadir";
 import { ContenedorArticulosConjuntoStyle,ArticulosTituloStyle,ArticulosImagenStyle,ContenedorPreciosStyle,PrecioArticuloStyle,DescuentoDescripcionStyle,DescripcionArticuloStyle,BotonStyle,IconoStyle, BotonLink } from "../../styles/Style"
 import { useState } from 'react';
 import { FaCartPlus,FaShoppingBag  } from "react-icons/fa"
 import { IoArrowBackOutline } from "react-icons/io5"
+
+
+
 export const DescripcionArticulos = () => {
 
   // const { id } = useParams()
   const location = useLocation()
+
   const {
     titulo, 
-    identificacion, 
+    id, 
     descripcion, 
     precio, 
     imagen, 
-    descuento} = location.state
+    descuento,
+    cantidad,
+  } = location.state
+
+  const cantidadState = cantidad;
+  const idState = id;
+  const descricionState = descripcion;
+  const tituloState = titulo;
+  const precioState = precio;
+  const imagenState = imagen;
+  const descuentoState = descuento;
+
+
+  const {
+    anadirCarritoStore
+  } = CarritoAñadir()
     
-    const [verMasDescripcion, setVerMasDescripcion] = useState(false);
-    const textLength = 300;
+  const [verMasDescripcion, setVerMasDescripcion] = useState(false);
+  const textLength = 300;
     
-    const textRecortado = verMasDescripcion ? descripcion : `${descripcion.slice(0, textLength)}...`
-    function handleVerMasDescripcion(){
+  const textRecortado = verMasDescripcion ? descripcion : `${descripcion.slice(0, textLength)}...`
+
+  function handleVerMasDescripcion(){
     setVerMasDescripcion(!verMasDescripcion)
   }
   
@@ -58,6 +78,7 @@ export const DescripcionArticulos = () => {
               { `${textRecortado}` }
             </DescripcionArticuloStyle>
         }
+
         {
           verMasDescripcion
           ? <BotonStyle 
@@ -69,7 +90,17 @@ export const DescripcionArticulos = () => {
               onClick={handleVerMasDescripcion}>Ver mas
             </BotonStyle>
         }
-        <BotonStyle 
+        
+        <BotonStyle
+          onClick={(titulo,descuento,descripcion,precio,imagen,id,cantidad) => anadirCarritoStore({
+            titulo: tituloState,
+            descuento: descuentoState,
+            descripcion: descricionState,
+            precio: precioState,
+            imagen: imagenState,
+            id: idState,
+            cantidad:cantidadState,
+          })} 
           padding="5px" 
           bRadius="50px" 
           width="90%"
@@ -79,6 +110,7 @@ export const DescripcionArticulos = () => {
             <FaCartPlus/>
           </IconoStyle>
         </BotonStyle>
+
         <BotonStyle  
           padding="5px" 
           bRadius="50px" 
@@ -90,6 +122,7 @@ export const DescripcionArticulos = () => {
           </IconoStyle>
         </BotonStyle>
       </ArticulosTituloStyle>
+
       <BotonLink to={-1}>
         <IconoStyle>
           <IoArrowBackOutline/>

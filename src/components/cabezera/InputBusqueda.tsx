@@ -32,7 +32,12 @@ const InputBusqueda:React.FC = () => {
             <BotonConLinkStyle
               botonCarritoLink
               to={"/carrito/articulos"}>
-              <CantidadCarritoStyle>
+              <CantidadCarritoStyle
+                border="1px solid #ff9500"
+                bColor="#ff9500"
+                width="40%"
+                height="40%"
+                position="absolute">
                 {cantidadArticulos}
               </CantidadCarritoStyle>
               <IconoStyle>
