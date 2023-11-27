@@ -1,16 +1,16 @@
-import { useParams, useLocation } from "react-router-dom"
+import {  useLocation } from "react-router-dom"
 import CarritoAñadir from "../../carritoCompras/CarritoAñadir";
-import { ContenedorArticulosConjuntoStyle,ArticulosTituloStyle,ArticulosImagenStyle,ContenedorPreciosStyle,PrecioArticuloStyle,DescuentoDescripcionStyle,DescripcionArticuloStyle,BotonStyle,IconoStyle, BotonLink } from "../../styles/Style"
+import { Main,Subtitulo,Imagen,ContenedorPreciosStyle,PrecioArticuloStyle,DescuentoDescripcionStyle,DescripcionArticulo,BotonStyle,Iconos, BotonAtras, ContenedorBotonesStyle,BotonesDescripcion } from "../../styles/Style"
 import { useState } from 'react';
 import { FaCartPlus,FaShoppingBag  } from "react-icons/fa"
 import { IoArrowBackOutline } from "react-icons/io5"
+import React from "react"
+import Busqueda from "../cabezera/busquedaArticulos/Busqueda";
 
+export const DescripcionArticulos: React.FC = () => {
 
-
-export const DescripcionArticulos = () => {
-
-  // const { id } = useParams()
   const location = useLocation()
+  const { windowWidth } = Busqueda();
 
   const {
     titulo, 
@@ -36,9 +36,18 @@ export const DescripcionArticulos = () => {
   } = CarritoAñadir()
     
   const [verMasDescripcion, setVerMasDescripcion] = useState(false);
-  const textLength = 300;
-    
-  const textRecortado = verMasDescripcion ? descripcion : `${descripcion.slice(0, textLength)}...`
+
+  // mobile
+  const textLengthMobile = 300; 
+  const mobileText = verMasDescripcion ? descripcion : `${descripcion.slice(0, textLengthMobile)}...`;
+
+  // tablet
+  const textLengthTablet = 600; 
+  const tabletText = verMasDescripcion ? descripcion : `${descripcion.slice(0, textLengthTablet)}...`;
+
+  // desktop
+  const textLengthDesktop = 900; 
+  const desktopText = verMasDescripcion ? descripcion : `${descripcion.slice(0, textLengthDesktop)}...`;
 
   function handleVerMasDescripcion(){
     setVerMasDescripcion(!verMasDescripcion)
@@ -47,88 +56,96 @@ export const DescripcionArticulos = () => {
   const precio_con_descuento = precio - (precio * (descuento / 100));
  
   return (
-    <ContenedorArticulosConjuntoStyle position="relative">
-      <BotonLink to={-1} >
-        <IconoStyle>
-          <IoArrowBackOutline/>
-        </IconoStyle>
-      </BotonLink>
-      <ArticulosTituloStyle>
-        { titulo }
-        <ArticulosImagenStyle 
-        imagenDescripcion 
-        src={imagen} />
-        <ContenedorPreciosStyle>
-          <DescuentoDescripcionStyle>
-            { `- ${descuento}%` }
-          </DescuentoDescripcionStyle>
-          <PrecioArticuloStyle>
-            { `$ ${precio}` }
-          </PrecioArticuloStyle>
-          <PrecioArticuloStyle precioConDescuento>
-            {`$ ${precio_con_descuento}`}
-          </PrecioArticuloStyle>
-        </ContenedorPreciosStyle>
+    <>
+      <BotonAtras  to={-1} >
+        <Iconos>
+            <IoArrowBackOutline/>
+        </Iconos>
+      </BotonAtras>
+      <Main position="relative">
+        <Subtitulo subtituloDescripcion>
+          { titulo }
+        </Subtitulo>
+          <Imagen 
+          imagenDescripcion 
+          src={imagen} />
+          <ContenedorPreciosStyle>
+            <DescuentoDescripcionStyle>
+              { `- ${descuento}%` }
+            </DescuentoDescripcionStyle>
+            <PrecioArticuloStyle>
+              { `$ ${precio}` }
+            </PrecioArticuloStyle>
+            <PrecioArticuloStyle precioConDescuento>
+              {`$ ${precio_con_descuento}`}
+            </PrecioArticuloStyle>
+          </ContenedorPreciosStyle>
 
-        { verMasDescripcion 
-          ? <DescripcionArticuloStyle verMasDescripcion >
-              { `${descripcion}` }
-            </DescripcionArticuloStyle>
-          : <DescripcionArticuloStyle>
-              { `${textRecortado}` }
-            </DescripcionArticuloStyle>
-        }
+          { verMasDescripcion 
+            ? <DescripcionArticulo >
+                { `${descripcion}` }
+              </DescripcionArticulo>
+            : <DescripcionArticulo>
+                { windowWidth > 480 
+                  ? `${tabletText}` 
+                  : windowWidth > 1024 
+                  ? `${desktopText}` 
+                  : `${mobileText}`}
+              </DescripcionArticulo>
+          }
 
-        {
-          verMasDescripcion
-          ? <BotonStyle 
-              botonVerMasDescripcion
-              onClick={handleVerMasDescripcion}>Ver menos
-            </BotonStyle>
-          : <BotonStyle 
-              botonVerMasDescripcion
-              onClick={handleVerMasDescripcion}>Ver mas
-            </BotonStyle>
-        }
-        
-        <BotonStyle
-          onClick={(titulo,descuento,descripcion,precio,imagen,id,cantidad) => anadirCarritoStore({
-            titulo: tituloState,
-            descuento: descuentoState,
-            descripcion: descricionState,
-            precio: precioState,
-            imagen: imagenState,
-            id: idState,
-            cantidad:cantidadState,
-          })} 
-          padding="5px" 
-          bRadius="50px" 
-          width="90%"
-          marginTop="10px">
-          Agregar
-          <IconoStyle>
-            <FaCartPlus/>
-          </IconoStyle>
-        </BotonStyle>
+          {
+            verMasDescripcion
+            ? <BotonStyle 
+                botonVerMasDescripcion
+                onClick={handleVerMasDescripcion}>Ver menos
+              </BotonStyle>
+            : <BotonStyle 
+                botonVerMasDescripcion
+                onClick={handleVerMasDescripcion}>Ver mas
+              </BotonStyle>
+          }
+          
+          <ContenedorBotonesStyle contenedorBotonesDescripcion>
+            <BotonesDescripcion
+              
+              onClick={(titulo,descuento,descripcion,precio,imagen,id,cantidad) => anadirCarritoStore({
+                titulo: tituloState,
+                descuento: descuentoState,
+                descripcion: descricionState,
+                precio: precioState,
+                imagen: imagenState,
+                id: idState,
+                cantidad:cantidadState,
+              })} 
+              padding="5px" 
+              bRadius="50px" 
+              mTop="10px">
+              Agregar
+              <Iconos>
+                <FaCartPlus/>
+              </Iconos>
+            </BotonesDescripcion>
 
-        <BotonStyle  
-          padding="5px" 
-          bRadius="50px" 
-          width="90%"
-          marginTop="10px">
-          Comprar
-          <IconoStyle>
-            <FaShoppingBag />
-          </IconoStyle>
-        </BotonStyle>
-      </ArticulosTituloStyle>
+            <BotonesDescripcion
+              botonesDescripcion  
+              padding="5px" 
+              bRadius="50px" 
+              marginTop="10px">
+              Comprar
+              <Iconos>
+                <FaShoppingBag />
+              </Iconos>
+            </BotonesDescripcion>
+          </ContenedorBotonesStyle>
 
-      <BotonLink to={-1}>
-        <IconoStyle>
-          <IoArrowBackOutline/>
-        </IconoStyle>
-      </BotonLink>
-    </ContenedorArticulosConjuntoStyle>
+      </Main>
+      <BotonAtras  to={-1} >
+        <Iconos>
+            <IoArrowBackOutline/>
+        </Iconos>
+      </BotonAtras>
+    </>
   )
 }
 

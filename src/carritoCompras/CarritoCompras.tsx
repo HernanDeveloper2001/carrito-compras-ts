@@ -1,19 +1,19 @@
 import { carritoDatos } from "../store/carritoStore"
 import { 
-  ContenedorArticulosConjuntoStyle,
-  ArticulosConjuntoStyle,
-  ArticulosImagenStyle,
+  Main,
+  MainArticulos,
+  Imagen,
   CantidadCarritoStyle,
-  ArticulosTituloStyle,
+  Subtitulo,
   DescuentoDescripcionStyle,
   PrecioArticuloStyle,
-  CarritoArticulo,
-  ContenedorBotonesStyle,
+  ContenedorCarritoPrecios,
+  ContenedorBotonesCarrito,
   BotonStyle, 
-  IconoStyle,
+  Iconos,
   Text,
 } from './../styles/Style';
-
+import Busqueda from "../components/cabezera/busquedaArticulos/Busqueda";
 import { FaTrashAlt,FaMinusCircle  } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaCircleXmark } from "react-icons/fa6";
@@ -24,7 +24,7 @@ import React from "react"
 interface Articulo {
   id:string;
   titulo:string;
-  descuento:number;
+  descuento?:number;
   descripcion:string;
   imagen:string;
   precio:number;
@@ -39,6 +39,7 @@ export const CarritoCompras: React.FC = () => {
     añadirArticulos,
   } = carritoDatos();
 
+  const { windowWidth } = Busqueda();
 
   // Agrupar los objetos por su id
   const grupos: Record<string, { item: Articulo, cantidad: number }> = {};
@@ -61,7 +62,7 @@ export const CarritoCompras: React.FC = () => {
   });
 
   //agregar al carrito
-  function añadirCarritoStore({ id, titulo, descuento, descripcion, precio, imagen, cantidad }){
+  function añadirCarritoStore({ id, titulo, descuento, descripcion, precio, imagen, cantidad }:Articulo):void{
     añadirArticulos({
       id, 
       titulo, 
@@ -72,6 +73,8 @@ export const CarritoCompras: React.FC = () => {
       cantidad
     })
   }
+
+  
 
 
   // Renderizar componentes para cada grupo
@@ -86,56 +89,59 @@ export const CarritoCompras: React.FC = () => {
     const precio_con_cantidad = precio_con_descuento * cantidad;
 
     return (
-        <ArticulosConjuntoStyle
+        <MainArticulos
+          articulosCarrito
           position="relative"
           height="60px"
           key={id}>
 
           <BotonStyle 
             botonIconoRemove 
-            onClick={() => quitarArticulo(id)}>
-            <IconoStyle>
-              <FaCircleXmark size={20}/>
-            </IconoStyle>
+            onClick={() => quitarArticulo(id)}
+            >
+            <Iconos>
+              <FaCircleXmark size={windowWidth > 480 ? 25 : windowWidth > 1025 && 40} />
+            </Iconos>
           </BotonStyle>
 
-          <ArticulosImagenStyle imagenDeCarrito src={imagen} />
+          <Imagen imagenDeCarrito src={imagen} />
 
-          <CarritoArticulo>
-            <ArticulosTituloStyle>
+          <ContenedorCarritoPrecios>
+            <Subtitulo tAlign="left">
               {titulo}
-            </ArticulosTituloStyle>
-            <PrecioArticuloStyle>
-              {`$ ${precio_original}`}
-            </PrecioArticuloStyle>
+            </Subtitulo>
+            {
+              descuento > 0 
+              && 
+              <PrecioArticuloStyle>
+                {`$ ${precio_original}`}
+              </PrecioArticuloStyle>
+            }
             <DescuentoDescripcionStyle>
               {`$ ${precio_con_cantidad}`}
             </DescuentoDescripcionStyle>
-          </CarritoArticulo>
+          </ContenedorCarritoPrecios>
 
-          <ContenedorBotonesStyle contenedorCarritoStyle>
-            
+          <ContenedorBotonesCarrito>
             {
               cantidad > 1
               ? <BotonStyle 
                   botonesCarritoStyle
                   onClick={() => decrementarArticulo(id)}>
-                  <IconoStyle>
-                    <FaMinusCircle /> 
-                  </IconoStyle>
+                  <Iconos>
+                    <FaMinusCircle size={windowWidth > 480 ? 25 : windowWidth > 1025 && 40} /> 
+                  </Iconos>
                 </BotonStyle>
               : <BotonStyle 
                   botonesCarritoStyle
                   onClick={() => decrementarArticulo(id)}>
-                  <IconoStyle>
-                    <FaTrashAlt /> 
-                  </IconoStyle>
+                  <Iconos>
+                    <FaTrashAlt size={windowWidth > 480 ? 25 : windowWidth > 1025 && 40} /> 
+                  </Iconos>
                 </BotonStyle>
             }
             
-            <CantidadCarritoStyle
-              width={"40%"}
-              heigth={"40%"}>
+            <CantidadCarritoStyle>
               {`${cantidad}`}
             </CantidadCarritoStyle>
 
@@ -150,22 +156,23 @@ export const CarritoCompras: React.FC = () => {
                 descuento: item.descuento,
               })} 
               botonesCarritoStyle>
-              <IconoStyle>
-                <IoMdAddCircleOutline /> 
-              </IconoStyle>
+              <Iconos>
+                <IoMdAddCircleOutline size={windowWidth > 480 ? 25 : windowWidth > 1025 && 40} /> 
+              </Iconos>
             </BotonStyle>
 
-          </ContenedorBotonesStyle>
-        </ArticulosConjuntoStyle>
+          </ContenedorBotonesCarrito>
+
+        </MainArticulos>
     );
   });
 
   return (
-  <ContenedorArticulosConjuntoStyle>
+  <Main mainCarrito>
     {
       cantidadTotal > 0 
       ? componentes
-      : <ArticulosImagenStyle
+      : <Imagen
         imagenDeCarritoNoArticulos 
         src={imagenCarritoVacio} />
     }
@@ -173,9 +180,13 @@ export const CarritoCompras: React.FC = () => {
       cantidadTotal > 0 
       && (
         <>
-          <Text textoCarrito tAlign="left" padding="0 20px">{`${cantidadTotal} Productos`}</Text>
-
-          <ArticulosConjuntoStyle pagarArticulosCarrito>
+          <Text 
+            textoCarrito >
+              {`${cantidadTotal} Productos`}
+          </Text>
+          <MainArticulos
+            articulosCarrito
+            pagarArticulosCarrito>
             <Text textoCarrito tAlign="left">
               Subtotal:
             </Text>
@@ -196,7 +207,7 @@ export const CarritoCompras: React.FC = () => {
             <Text textoCarrito tAlign="right">
               {`$ ${precioTotal}`}
             </Text>
-          </ArticulosConjuntoStyle>
+          </MainArticulos>
           <BotonStyle botonComprarCarrito>
             Ir a pagar / Total: {`$ ${precioTotal}`}
           </BotonStyle>
@@ -204,8 +215,8 @@ export const CarritoCompras: React.FC = () => {
       )
     }
     
-    
-  </ContenedorArticulosConjuntoStyle>);
+  </Main>
+  );
 };
 
 

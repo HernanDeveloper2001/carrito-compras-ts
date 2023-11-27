@@ -1,11 +1,11 @@
 import "./styles/reset.css"
 import Cabezera from "./components/cabezera/Cabezera";
-import Usuarios from "./components/usuarios/Usuarios";
-import OpcionesArticulos from "./components/opciones_articulos/OpcionesArticulos";
+import { NavegacionArticulos } from "./components/Navegacion/NavegacionArticulos";
 import PieDePagina from "./components/pie_de_pagina/PieDePagina";
 import RoutesArticulos from "./routes/RoutesArticulos";
 import PantallaCarga from "./components/articulos/PantallaCarga";
 import { useState, useEffect } from "react"
+
 
 const App = () => {
 
@@ -29,17 +29,14 @@ const App = () => {
     <>
       {loading 
       ? <PantallaCarga /> 
-      : (
-        <>
+      : <>
           <Cabezera/>
-          <Usuarios />
-          <OpcionesArticulos />
+          <NavegacionArticulos />
           <RoutesArticulos />
           <PieDePagina/>
         </>
-      ) }
-      
-      </>
+      }
+    </>
   )
 }
 

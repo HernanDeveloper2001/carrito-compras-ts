@@ -1,11 +1,15 @@
-import { CabezeraStyle } from "../../styles/Style"
+import { Header } from "../../styles/Style"
 import InputBusqueda from "./InputBusqueda"
 
 const Cabezera = () => {
+
   return (
-    <CabezeraStyle>
-      <InputBusqueda />
-    </CabezeraStyle>
+    <>
+      <Header >
+        <InputBusqueda />
+      </Header>
+    </>
+    
   )
 }
 

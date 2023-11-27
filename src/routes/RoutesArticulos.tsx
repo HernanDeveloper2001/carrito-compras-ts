@@ -10,6 +10,7 @@ import { Consolas } from "../components/articulos/Consolas";
 import { DescripcionArticulos } from "../components/articulos/DescripcionArticulos";
 import { CarritoCompras } from "../carritoCompras/CarritoCompras";
 import { PantallaError } from "../components/articulos/PantallaError";
+
 const RoutesArticulos = () => {
   return (
     <Routes>

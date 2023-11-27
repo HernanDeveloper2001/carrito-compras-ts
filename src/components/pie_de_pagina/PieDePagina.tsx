@@ -1,42 +1,42 @@
-import { IconoStyle } from "../../styles/Style"
-import { ContenedorPieDePaginaStyle,LinkRedes,Text,ContenedorBotonesStyle,ArticulosImagenStyle } from "../../styles/Style"
+import { Iconos } from "../../styles/Style"
+import { Footer,LinkRedes,Text,ContenedorRedesSocialesStyle } from "../../styles/Style"
 // import imagenCreador from "../../assets/imagenes/imagen_de_creador/hernan.jpg"
 import { FaGithub, FaLinkedin,FaRegCopyright } from "react-icons/fa"
 import { BsFillPassportFill } from "react-icons/bs";
-
-
-
-
+import Busqueda from "../cabezera/busquedaArticulos/Busqueda";
 
 const PieDePagina = () => {
+
+  const { windowWidth } = Busqueda();
   return (
-    <ContenedorPieDePaginaStyle>
+    <Footer>
       <Text>Redes sociales</Text>
-      <ContenedorBotonesStyle redesSociales>
-        <LinkRedes href="https://github.com/HernanDeveloper2001" rel="noopener noreferrer" target="_blank">
-          <IconoStyle>
-            <FaGithub size={30}/> 
+      <ContenedorRedesSocialesStyle>
+        <LinkRedes 
+          href="https://github.com/HernanDeveloper2001" rel="noopener noreferrer" target="_blank">
+          <Iconos>
+            <FaGithub size={windowWidth > 480 ? 40 : windowWidth > 1024 ? 80 : 20}/> 
               Github
-          </IconoStyle>
+          </Iconos>
         </LinkRedes>
 
         <LinkRedes href="https://www.linkedin.com/in/hernandariocalvo/" rel="noopener noreferrer" target="_blank">
-          <IconoStyle >
-            <FaLinkedin size={30}/>
+          <Iconos >
+            <FaLinkedin size={windowWidth > 480 ? 40 : windowWidth > 1024 ? 80 : 20}/>
               Linkedin
-          </IconoStyle>
+          </Iconos>
         </LinkRedes>
 
         <LinkRedes href="https://portafolio-personal-rho.vercel.app/" rel="noopener noreferrer" target="_blank">
-          <IconoStyle >
-            <BsFillPassportFill size={30}/>
+          <Iconos >
+            <BsFillPassportFill size={windowWidth > 480 ? 40 : windowWidth > 1024 ? 80 : 20}/>
               portafolio
-          </IconoStyle>
+          </Iconos>
         </LinkRedes>
-      </ContenedorBotonesStyle>
+      </ContenedorRedesSocialesStyle>
       <Text>Hernan dario calvo cornelio</Text>
       <Text><FaRegCopyright/>VentasCalvasProgresivas</Text>
-    </ContenedorPieDePaginaStyle>
+    </Footer>
   )
 }
 

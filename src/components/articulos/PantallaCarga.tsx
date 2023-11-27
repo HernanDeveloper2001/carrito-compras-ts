@@ -1,9 +1,13 @@
-import { ArticulosImagenStyle } from "../../styles/Style"
+import { Imagen } from "../../styles/Style"
 import imagenDeCarga from "../../assets/imagenes/pantalla_de_carga/pantalla_de_carga.jpeg"
+import React from "react"
 
-const PantallaCarga = () => {
+
+const PantallaCarga: React.FC = () => {
   return (
-    <ArticulosImagenStyle imagenDeCarga src={imagenDeCarga}></ArticulosImagenStyle>
+    <>
+      <Imagen imagenDeCarga src={imagenDeCarga}></Imagen>
+    </>
   )
 }
 

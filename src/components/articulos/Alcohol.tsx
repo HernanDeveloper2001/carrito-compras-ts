@@ -1,12 +1,23 @@
 import { articulos } from "../../Api/ApiTienda"
-import { ContenedorArticulosConjuntoStyle,ArticulosConjuntoStyle,ArticulosDescuentoStyle,ArticulosTituloStyle,ArticulosImagenStyle,BotonStyle,ContenedorBotonesStyle,IconoStyle, BotonLink,BotonConLinkStyle } from "../../styles/Style"
+import { Main,MainArticulos,ArticulosDescuentoStyle,Subtitulo,Imagen,BotonStyle,ContenedorBotonesStyle,Iconos, BotonAtras,BotonLink } from "../../styles/Style"
 import { FaCartPlus } from "react-icons/fa"
 import { LiaEyeSolid } from "react-icons/lia"
 import { IoArrowBackOutline } from "react-icons/io5"
-import { Outlet } from "react-router-dom"
 import CarritoAñadir from "../../carritoCompras/CarritoAñadir"
+import React from "react"
 
-export const Alcohol = () => {
+
+interface Item {
+  id: string; // O el tipo de datos correcto para tu ID
+  titulo: string;
+  descuento: number;
+  descripcion: string;
+  precio: number;
+  imagen: string;
+  cantidad: number;
+}
+
+export const Alcohol: React.FC = () => {
 
   const alcohol = articulos.alcohol;
   const {
@@ -14,23 +25,27 @@ export const Alcohol = () => {
   } = CarritoAñadir();
   
   return (
-    <ContenedorArticulosConjuntoStyle>
-      <BotonLink to={"/"}>
-        <IconoStyle><IoArrowBackOutline/></IconoStyle>
-      </BotonLink>
+    <>
+      <BotonAtras to={"/"}>
+        <Iconos>
+          <IoArrowBackOutline/>
+        </Iconos>
+      </BotonAtras>
+      <Main mainArticulos={true}>
       {alcohol.map(item => {
         return (
-          <ArticulosConjuntoStyle key={item.id} >
+          <MainArticulos key={item.id} >
             {item.descuento > 0 && <ArticulosDescuentoStyle>{`-${item.descuento}%`}</ArticulosDescuentoStyle>}
-            <ArticulosTituloStyle>{item.titulo}</ArticulosTituloStyle>
-            <ArticulosImagenStyle
+            <Subtitulo>{item.titulo}</Subtitulo>
+            <Imagen
               src={item.imagen} 
               alt={item.titulo}>
-            </ArticulosImagenStyle>
+            </Imagen>
 
             <ContenedorBotonesStyle>
               {/*Ver contenido*/}
-              <BotonConLinkStyle 
+              <BotonLink 
+                botonAgregar={true}
                 to={`/alcohol/descripcion/articulos/${item.titulo}`}
                 state={{
                   titulo: item.titulo,
@@ -44,10 +59,10 @@ export const Alcohol = () => {
                 padding="10px" 
                 bRadius="5%">
                 ver
-                <IconoStyle>
+                <Iconos>
                   <LiaEyeSolid />
-                </IconoStyle>
-              </BotonConLinkStyle>
+                </Iconos>
+              </BotonLink>
 
               {/*Agregar al carrito*/}
               <BotonStyle 
@@ -63,19 +78,21 @@ export const Alcohol = () => {
                 padding="10px" 
                 bRadius="5%">
                 Agregar
-                <IconoStyle>
+                <Iconos>
                   <FaCartPlus/>
-                </IconoStyle>
+                </Iconos>
               </BotonStyle>
             </ContenedorBotonesStyle>
-          </ArticulosConjuntoStyle>
+          </MainArticulos>
         )
       })}
-      <BotonLink to={"/"}>
-        <IconoStyle><IoArrowBackOutline/></IconoStyle>
-      </BotonLink>
-      <Outlet />
-    </ContenedorArticulosConjuntoStyle>
+      </Main>
+      <BotonAtras to={"/"}>
+        <Iconos >
+          <IoArrowBackOutline/>
+        </Iconos>
+      </BotonAtras>
+    </>
   )
 }
 
