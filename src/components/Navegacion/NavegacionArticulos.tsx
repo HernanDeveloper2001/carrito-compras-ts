@@ -3,12 +3,11 @@ import { FaGlassCheers,FaTshirt  } from "react-icons/fa";
 import { GiArmoredPants,GiConsoleController,GiDelicatePerfume,GiSonicShoes } from "react-icons/gi"
 import { PiWatchDuotone } from "react-icons/pi";
 
-
 export const NavegacionArticulos = () => {
 
   return (
     <Navegacion>
-      <NavegacionLista >
+      <NavegacionLista>
         <BotonLink botonnavegacion={"true"} to={"/camisas"}>
           <Iconos>
             <FaTshirt size={60}/> { /*camisa */}
@@ -73,5 +72,5 @@ export const NavegacionArticulos = () => {
 
     </Navegacion>
   )
-}
+};
 

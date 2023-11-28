@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 
-interface Articulo {
+export interface Articulo {
   id:string;
   precio:number;
   descuento?: number | null;

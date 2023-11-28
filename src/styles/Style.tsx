@@ -17,27 +17,27 @@ interface StyleProps {
   padding?:string | number;
   bradius?: string | number;
   botonvermasdescripcion?: string;
-  botonesCarritoStyle?: boolean;
-  botonIconoRemove?: boolean;
-  botonComprarCarrito?: boolean;
+  botonescarritostyle?: string;
+  botoniconoremove?: string;
+  botoncomprarcarrito?: string;
   mTop?: string | number;
   botoncarritolink?: string;
   botonUsuario?: string | number;
   contenedorBotonesCarrito?: string | number;
   redesSociales?: string | number;
-  pagarArticulosCarrito?: boolean;
+  pagararticuloscarrito?: string;
   imagendecarga?: string;
   imagendescripcion?: string;
-  imagenDeCarrito?: boolean;
-  imagenDeCarritoNoArticulos?: boolean;
+  imagendecarrito?: string;
+  imagendecarritonoarticulos?: string;
   imagenderutanoencontrada?: string ;
   verMasDescripcion?: boolean;
   preciocondescuento?: string;
-  textoCarrito?: boolean;
+  textocarrito?: string;
   tAlign?: string | number;
   botonAtras?: string | number;
-  mainCarrito?:boolean;
-  articulosCarrito?:boolean;
+  maincarrito?:string;
+  articuloscarrito?:string;
   botonnavegacion?:string;
 }
 
@@ -163,9 +163,9 @@ export const BotonStyle = styled.button<StyleProps>`
   margin-top: ${props => props.mTop || null};
   cursor: pointer;
   ${props => props.botonvermasdescripcion && botonVerMasDescripcion}
-  ${props => props.botonesCarritoStyle && botonesCarritoStyle}
-  ${props => props.botonIconoRemove && botonIconoRemove}
-  ${props => props.botonComprarCarrito && botonComprarCarrito}
+  ${props => props.botonescarritostyle && botonesCarritoStyle}
+  ${props => props.botoniconoremove && botonIconoRemove}
+  ${props => props.botoncomprarcarrito && botonComprarCarrito}
 
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width:${breakpoints.tablet}){
     font-size:3vw;
@@ -325,8 +325,8 @@ export const Imagen = styled.img<StyleProps>`
   position: ${props => props.position || null};
   ${props => props.imagendecarga && imagenDeCarga}
   ${props => props.imagendescripcion && imagenDescripcion}
-  ${props => props.imagenDeCarrito && imagenDeCarrito}
-  ${props => props.imagenDeCarritoNoArticulos && imagenDeCarritoNoArticulos}
+  ${props => props.imagendecarrito && imagenDeCarrito}
+  ${props => props.imagendecarritonoarticulos && imagenDeCarritoNoArticulos}
   ${props => props.imagenderutanoencontrada && imagenDeRutaNoEncontrada}
 `
 const imagenDeCarga = css`
@@ -486,7 +486,7 @@ export const Main = styled.main<StyleProps>`
   text-align:center;
   padding: 20px 0;
   width: 100%;
-  ${props => props.mainCarrito && mainCarrito}
+  ${props => props.maincarrito && mainCarrito}
   ${props => props.position || null}
   ${props => props.mainarticulos && mainArticulos}
 
@@ -525,8 +525,8 @@ export const MainArticulos = styled.article<StyleProps>`
   box-shadow: 1px -1px  5px 2px #ccc;
   position: ${props => props.position || "relative"};
   animation: ${showArticulosConjuntoStyle} 1s ease-in-out;
-  ${props => props.pagarArticulosCarrito && pagarArticulosCarrito}
-  ${props => props.articulosCarrito && articulosCarrito}
+  ${props => props.pagararticuloscarrito && pagarArticulosCarrito}
+  ${props => props.articuloscarrito && articulosCarrito}
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
     gap: 20px;
   }
@@ -738,7 +738,7 @@ export const Text = styled.p<StyleProps>`
   font-family: 'Montserrat', sans-serif;
   text-transform: capitalize;
   font-weight: 200;
-  ${props => props.textoCarrito && textoCarrito}
+  ${props => props.textocarrito && textoCarrito}
   text-align:${props => props.tAlign || "center"};
   margin: ${props => props.margin || null};
   font-size: 4vw;

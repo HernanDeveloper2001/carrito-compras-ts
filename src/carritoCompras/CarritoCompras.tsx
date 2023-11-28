@@ -21,14 +21,14 @@ import imagenCarritoVacio from "../assets/imagenes/imagenCarritoCompras/carritoV
 import React from "react"
 
 
-interface Articulo {
-  id:string;
-  titulo:string;
-  descuento?:number;
-  descripcion:string;
+interface ArticulosCompras {
+  id: string;
+  cantidad: number;
+  titulo: string;
+  precio: number;
+  descuento: number;
+  descripcion: string;
   imagen:string;
-  precio:number;
-  cantidad: number
 }
 
 export const CarritoCompras: React.FC = () => {
@@ -42,27 +42,47 @@ export const CarritoCompras: React.FC = () => {
   const { windowWidth } = Busqueda();
 
   // Agrupar los objetos por su id
-  const grupos: Record<string, { item: Articulo, cantidad: number }> = {};
+  const grupos: Record<string, { item: ArticulosCompras , cantidad: number }> = {};
 
   const cantidadTotal = articulosGuardados.reduce((total, item) => total + item.cantidad, 0);
 
   const subTotal = articulosGuardados.reduce((total,item) => total + item.precio, 0);
 
-  const precioTotal = articulosGuardados.reduce((acc, item) => acc + (item.precio * (1 - item.descuento / 100)), 0);
+  const precioTotal = articulosGuardados.reduce((acc, item) => {
+    // Verificar si item.descuento está definido antes de usarlo
+    if (item.descuento !== null && item.descuento !== undefined) {
+      return acc + (item.precio * (1 - item.descuento / 100));
+    } else {
+      // Si item.descuento es null o undefined, sumar solo el precio
+      return acc + item.precio;
+    }
+  }, 0);
 
-  const descuentoTotal = articulosGuardados.reduce((acc, item) => acc + (item.precio * (item.descuento / 100)), 0);
+  const descuentoTotal = articulosGuardados.reduce((acc, item) => {
+    // Verificar si item.descuento está definido antes de usarlo
+    if (item.descuento !== null && item.descuento !== undefined) {
+      return acc + (item.precio * (item.descuento / 100));
+    } else {
+      // Si item.descuento es null o undefined, no sumar nada al descuento total
+      return acc;
+    }
+  }, 0);
 
-  articulosGuardados.map((item) : void => {
-    const { id } = item;
+  articulosGuardados.forEach((item) => {
+    const { id, descuento} = item;
+  
     if (!grupos[id]) {
-      grupos[id] = { item, cantidad: 1 };
+      // Aquí, asumo que ArticulosCompras tiene las mismas propiedades que Articulo
+      grupos[id] = { item: { ...item, descuento: descuento || 0 }, cantidad: 1 };
     } else {
       grupos[id].cantidad += 1;
     }
   });
 
   //agregar al carrito
-  function añadirCarritoStore({ id, titulo, descuento, descripcion, precio, imagen, cantidad }:Articulo):void{
+  function añadirCarritoStore(
+    { id, titulo, descuento, descripcion, precio, imagen, cantidad}:ArticulosCompras
+  ){
     añadirArticulos({
       id, 
       titulo, 
@@ -70,7 +90,7 @@ export const CarritoCompras: React.FC = () => {
       descripcion, 
       precio, 
       imagen, 
-      cantidad
+      cantidad,
     })
   }
 
@@ -78,7 +98,7 @@ export const CarritoCompras: React.FC = () => {
   // Renderizar componentes para cada grupo
   const componentes = Object.values(grupos).map((grupo) => {
     const { item ,cantidad } = grupo;
-    const { id, titulo, precio, descuento, imagen, } = item;
+    const { id, titulo, precio, descuento, imagen } = item;
 
     const precio_con_descuento = precio - (precio * (descuento / 100));
 
@@ -87,12 +107,13 @@ export const CarritoCompras: React.FC = () => {
     const precio_con_cantidad = precio_con_descuento * cantidad;
 
     return (
+      <>
         <MainArticulos
-          articulosCarrito={true}
+          articuloscarrito={"true"}
           key={id}>
 
           <BotonStyle 
-            botonIconoRemove={true}
+            botoniconoremove={"true"}
             onClick={() => quitarArticulo(id)}
             >
             <Iconos>
@@ -100,7 +121,7 @@ export const CarritoCompras: React.FC = () => {
             </Iconos>
           </BotonStyle>
 
-          <Imagen imagenDeCarrito={true} src={imagen} />
+          <Imagen imagendecarrito={"true"} src={imagen} />
 
           <ContenedorCarritoPrecios>
             <Subtitulo tAlign="left">
@@ -122,14 +143,14 @@ export const CarritoCompras: React.FC = () => {
             {
               cantidad > 1
               ? <BotonStyle 
-                  botonesCarritoStyle={true}
+                  botonescarritostyle={"true"}
                   onClick={() => decrementarArticulo(id)}>
                   <Iconos>
                     <FaMinusCircle size={windowWidth > 480 ? 25 : windowWidth > 1025 && 40} /> 
                   </Iconos>
                 </BotonStyle>
               : <BotonStyle 
-                  botonesCarritoStyle={true}
+                  botonescarritostyle={"true"}
                   onClick={() => decrementarArticulo(id)}>
                   <Iconos>
                     <FaTrashAlt size={windowWidth > 480 ? 25 : windowWidth > 1025 && 40} /> 
@@ -142,7 +163,7 @@ export const CarritoCompras: React.FC = () => {
             </CantidadCarritoStyle>
 
             <BotonStyle
-              onClick={(id,precio, descripcion, descuento, titulo, imagen, cantidad) => añadirCarritoStore({
+              onClick={() => añadirCarritoStore({
                 id: item.id,
                 precio: item.precio,
                 cantidad: item.cantidad,
@@ -151,7 +172,7 @@ export const CarritoCompras: React.FC = () => {
                 titulo: item.titulo,
                 descuento: item.descuento,
               })} 
-              botonesCarritoStyle>
+              botonescarritostyle={"true"}>
               <Iconos>
                 <IoMdAddCircleOutline size={windowWidth > 480 ? 25 : windowWidth > 1025 && 40} /> 
               </Iconos>
@@ -160,58 +181,61 @@ export const CarritoCompras: React.FC = () => {
           </ContenedorBotonesCarrito>
 
         </MainArticulos>
+      </>
     );
   });
 
   return (
-  <Main mainCarrito={true}>
-    {
-      cantidadTotal > 0 
-      ? componentes
-      : <Imagen
-        imagenDeCarritoNoArticulos={true}
-        src={imagenCarritoVacio} />
-    }
-    {
-      cantidadTotal > 0 
-      && (
-        <>
-          <Text 
-            textoCarrito={true} >
-              {`${cantidadTotal} Productos`}
-          </Text>
-          <MainArticulos
-            articulosCarrito={true}
-            pagarArticulosCarrito={true}>
-            <Text textoCarrito={true} tAlign="left">
-              Subtotal:
-            </Text>
-            <Text textoCarrito={true} tAlign="right">
-              {`$ ${subTotal}`}
-            </Text>
+    <>
+      <Main maincarrito={"true"}>
+        {
+          cantidadTotal > 0 
+          ? componentes
+          : <Imagen
+            imagendecarritonoarticulos={"true"}
+            src={imagenCarritoVacio} />
+        }
+        {
+          cantidadTotal > 0 
+          && (
+            <>
+              <Text 
+                textocarrito={"true"} >
+                  {`${cantidadTotal} Productos`}
+              </Text>
+              <MainArticulos
+                articuloscarrito={"true"}
+                pagararticuloscarrito={"true"}>
+                <Text textocarrito={"true"} tAlign="left">
+                  Subtotal:
+                </Text>
+                <Text textocarrito={"true"} tAlign="right">
+                  {`$ ${subTotal}`}
+                </Text>
 
-            <Text textoCarrito={true} tAlign="left">
-              Descuento en productos:
-            </Text>
-            <Text textoCarrito={true} tAlign="right">
-              {`-$ ${descuentoTotal}`}
-            </Text>
+                <Text textocarrito={"true"} tAlign="left">
+                  Descuento en productos:
+                </Text>
+                <Text textocarrito={"true"} tAlign="right">
+                  {`-$ ${descuentoTotal}`}
+                </Text>
 
-            <Text textoCarrito={true} tAlign="left">
-              Total:
-            </Text>
-            <Text textoCarrito={true} tAlign="right">
-              {`$ ${precioTotal}`}
-            </Text>
-          </MainArticulos>
-          <BotonStyle botonComprarCarrito={true}>
-            Ir a pagar / Total: {`$ ${precioTotal}`}
-          </BotonStyle>
-        </>
-      )
-    }
-    
-  </Main>
+                <Text textocarrito={"true"} tAlign="left">
+                  Total:
+                </Text>
+                <Text textocarrito={"true"} tAlign="right">
+                  {`$ ${precioTotal}`}
+                </Text>
+              </MainArticulos>
+              <BotonStyle botoncomprarcarrito={"true"}>
+                Ir a pagar / Total: {`$ ${precioTotal}`}
+              </BotonStyle>
+            </>
+          )
+        }
+        
+      </Main>
+    </>
   );
 };
 
