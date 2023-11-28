@@ -3,12 +3,15 @@ import { FaGlassCheers,FaTshirt  } from "react-icons/fa";
 import { GiArmoredPants,GiConsoleController,GiDelicatePerfume,GiSonicShoes } from "react-icons/gi"
 import { PiWatchDuotone } from "react-icons/pi";
 
+
+
 export const NavegacionArticulos = () => {
+
 
   return (
     <Navegacion>
       <NavegacionLista>
-        <BotonLink botonnavegacion={"true"} to={"/camisas"}>
+        <BotonLink botonnavegacion={"true"} to={`/articulo/camisas/`}>
           <Iconos>
             <FaTshirt size={60}/> { /*camisa */}
           </Iconos>
@@ -17,7 +20,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista>
-        <BotonLink botonnavegacion={"true"} to={"/alcohol"}>
+        <BotonLink botonnavegacion={"true"} to={"/articulo/alcohol/"}>
           <Iconos>
             <FaGlassCheers size={60}/> { /*alcohol */}
           </Iconos>
@@ -26,7 +29,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista >
-        <BotonLink botonnavegacion={"true"} to={"/pantalones"}>
+        <BotonLink botonnavegacion={"true"} to={"/articulo/pantalones/"}>
           <Iconos>
             <GiArmoredPants size={60}/> { /*pantalones */}
           </Iconos>
@@ -35,7 +38,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista >
-        <BotonLink botonnavegacion={"true"} to={"/relojes"}>
+        <BotonLink botonnavegacion={"true"} to={"/articulo/relojes/"}>
           <Iconos>
             <PiWatchDuotone size={60}/> { /*relojes */}
           </Iconos>
@@ -44,7 +47,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista >
-        <BotonLink botonnavegacion={"true"} to={"/zapatos"}>
+        <BotonLink botonnavegacion={"true"} to={"/articulo/zapatos/"}>
           <Iconos>
             <GiSonicShoes size={60}/> { /*zapatos */}
           </Iconos>
@@ -53,7 +56,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista >
-        <BotonLink botonnavegacion={"true"} to={"/perfumes"}>
+        <BotonLink botonnavegacion={"true"} to={"/articulo/perfumes/"}>
           <Iconos>
             <GiDelicatePerfume  size={60}/> { /*perfumes */}
           </Iconos>
@@ -62,7 +65,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista>
-        <BotonLink botonnavegacion={"true"} to={"/consolas"}>
+        <BotonLink botonnavegacion={"true"} to={"/articulo/consolas/"}>
           <Iconos>
             <GiConsoleController size={60}/> { /*consolas */}
           </Iconos>

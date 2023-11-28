@@ -57,7 +57,7 @@ export const DescripcionArticulos: React.FC = () => {
  
   return (
     <>
-      <BotonAtras to={-1} >
+      <BotonAtras to={`/`} >
         <Iconos>
             <IoArrowBackOutline/>
         </Iconos>
@@ -132,7 +132,7 @@ export const DescripcionArticulos: React.FC = () => {
           </ContenedorBotonesStyle>
 
       </Main>
-      <BotonAtras to={-1} >
+      <BotonAtras to={`/`} >
         <Iconos>
             <IoArrowBackOutline/>
         </Iconos>

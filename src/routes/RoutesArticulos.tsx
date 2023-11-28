@@ -15,13 +15,13 @@ const RoutesArticulos = () => {
   return (
     <Routes>
         <Route path="/" element={<Inicio />} />
-        <Route path="/camisas/" element={<Camisas />} />
-        <Route path="/pantalones" element={<Pantalones />} />
-        <Route path="/zapatos" element={<Zapatos />} />
-        <Route path="/perfumes" element={<Perfumes />} />
-        <Route path="/alcohol/" element={<Alcohol />} />
-        <Route path="/relojes" element={<Relojes />} />
-        <Route path="/consolas" element={<Consolas />} />
+        <Route path="/articulo/camisas/" element={<Camisas />} />
+        <Route path="/articulo/pantalones/" element={<Pantalones />} />
+        <Route path="/articulo/zapatos/" element={<Zapatos />} />
+        <Route path="/articulo/perfumes/" element={<Perfumes />} />
+        <Route path="/articulo/alcohol/" element={<Alcohol />} />
+        <Route path="/articulo/relojes/" element={<Relojes />} />
+        <Route path="/articulo/consolas/" element={<Consolas />} />
         <Route path="/:articulo/descripcion/articulos/:id" element={<DescripcionArticulos />} />
         <Route path="/carrito/articulos" element={<CarritoCompras />} />
         <Route path="*" element={<PantallaError />} />

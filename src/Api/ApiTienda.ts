@@ -53,7 +53,7 @@ interface Camisa {
   precio:number;
   imagen:string; 
   descuento?:number;
-  descripcion:string | null;
+  descripcion:string;
   cantidad:number;
 }
 interface Pantalon {
@@ -62,7 +62,7 @@ interface Pantalon {
   precio:number;
   imagen:string;
   descuento?:number;
-  descripcion:string | null;
+  descripcion:string ;
   cantidad:number;
 }
 interface Consolas {
@@ -71,7 +71,7 @@ interface Consolas {
   precio:number;
   imagen:string;
   descuento?:number;
-  descripcion: string | null;
+  descripcion: string ;
   cantidad:number;
 }
 interface Zapatos {
@@ -80,7 +80,7 @@ interface Zapatos {
   precio:number;
   imagen:string;
   descuento?:number;
-  descripcion: string | null;
+  descripcion: string ;
   cantidad:number;
 }
 interface Alcohol {
@@ -89,7 +89,7 @@ interface Alcohol {
   precio:number;
   imagen:string;
   descuento?:number;
-  descripcion:string | null;
+  descripcion:string ;
   cantidad:number;
 }
 interface Relojes {
@@ -98,7 +98,7 @@ interface Relojes {
   precio:number;
   imagen:string;
   descuento?:number;
-  descripcion:string | null;
+  descripcion:string;
   cantidad:number;
 }
 interface Perfumes {
@@ -107,7 +107,7 @@ interface Perfumes {
   precio:number;
   imagen:string;
   descuento?:number;
-  descripcion:string | null;
+  descripcion:string ;
   cantidad:number;
 }
 interface Articulos {
