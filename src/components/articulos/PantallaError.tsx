@@ -9,7 +9,7 @@ export const PantallaError: React.FC = () => {
     <>
       <Main>
         <Imagen
-          imagenDeRutaNoEncontrada 
+          imagenderutanoencontrada={"true"}
           src={imagenDeError} 
           alt="imagenDeError" />
       </Main>

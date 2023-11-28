@@ -75,12 +75,10 @@ export const CarritoCompras: React.FC = () => {
   }
 
   
-
-
   // Renderizar componentes para cada grupo
   const componentes = Object.values(grupos).map((grupo) => {
     const { item ,cantidad } = grupo;
-    const { id, titulo, descripcion, precio, descuento, imagen, } = item;
+    const { id, titulo, precio, descuento, imagen, } = item;
 
     const precio_con_descuento = precio - (precio * (descuento / 100));
 
@@ -90,13 +88,11 @@ export const CarritoCompras: React.FC = () => {
 
     return (
         <MainArticulos
-          articulosCarrito
-          position="relative"
-          height="60px"
+          articulosCarrito={true}
           key={id}>
 
           <BotonStyle 
-            botonIconoRemove 
+            botonIconoRemove={true}
             onClick={() => quitarArticulo(id)}
             >
             <Iconos>
@@ -104,7 +100,7 @@ export const CarritoCompras: React.FC = () => {
             </Iconos>
           </BotonStyle>
 
-          <Imagen imagenDeCarrito src={imagen} />
+          <Imagen imagenDeCarrito={true} src={imagen} />
 
           <ContenedorCarritoPrecios>
             <Subtitulo tAlign="left">
@@ -126,14 +122,14 @@ export const CarritoCompras: React.FC = () => {
             {
               cantidad > 1
               ? <BotonStyle 
-                  botonesCarritoStyle
+                  botonesCarritoStyle={true}
                   onClick={() => decrementarArticulo(id)}>
                   <Iconos>
                     <FaMinusCircle size={windowWidth > 480 ? 25 : windowWidth > 1025 && 40} /> 
                   </Iconos>
                 </BotonStyle>
               : <BotonStyle 
-                  botonesCarritoStyle
+                  botonesCarritoStyle={true}
                   onClick={() => decrementarArticulo(id)}>
                   <Iconos>
                     <FaTrashAlt size={windowWidth > 480 ? 25 : windowWidth > 1025 && 40} /> 
@@ -168,12 +164,12 @@ export const CarritoCompras: React.FC = () => {
   });
 
   return (
-  <Main mainCarrito>
+  <Main mainCarrito={true}>
     {
       cantidadTotal > 0 
       ? componentes
       : <Imagen
-        imagenDeCarritoNoArticulos 
+        imagenDeCarritoNoArticulos={true}
         src={imagenCarritoVacio} />
     }
     {
@@ -181,34 +177,34 @@ export const CarritoCompras: React.FC = () => {
       && (
         <>
           <Text 
-            textoCarrito >
+            textoCarrito={true} >
               {`${cantidadTotal} Productos`}
           </Text>
           <MainArticulos
-            articulosCarrito
-            pagarArticulosCarrito>
-            <Text textoCarrito tAlign="left">
+            articulosCarrito={true}
+            pagarArticulosCarrito={true}>
+            <Text textoCarrito={true} tAlign="left">
               Subtotal:
             </Text>
-            <Text textoCarrito tAlign="right">
+            <Text textoCarrito={true} tAlign="right">
               {`$ ${subTotal}`}
             </Text>
 
-            <Text textoCarrito tAlign="left">
+            <Text textoCarrito={true} tAlign="left">
               Descuento en productos:
             </Text>
-            <Text textoCarrito tAlign="right">
+            <Text textoCarrito={true} tAlign="right">
               {`-$ ${descuentoTotal}`}
             </Text>
 
-            <Text textoCarrito tAlign="left">
+            <Text textoCarrito={true} tAlign="left">
               Total:
             </Text>
-            <Text textoCarrito tAlign="right">
+            <Text textoCarrito={true} tAlign="right">
               {`$ ${precioTotal}`}
             </Text>
           </MainArticulos>
-          <BotonStyle botonComprarCarrito>
+          <BotonStyle botonComprarCarrito={true}>
             Ir a pagar / Total: {`$ ${precioTotal}`}
           </BotonStyle>
         </>

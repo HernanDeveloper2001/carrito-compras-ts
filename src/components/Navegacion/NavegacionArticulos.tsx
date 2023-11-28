@@ -6,12 +6,10 @@ import { PiWatchDuotone } from "react-icons/pi";
 
 export const NavegacionArticulos = () => {
 
-
   return (
     <Navegacion>
-
       <NavegacionLista >
-        <BotonLink botonNavegacion to={"/camisas"}>
+        <BotonLink botonnavegacion={"true"} to={"/camisas"}>
           <Iconos>
             <FaTshirt size={60}/> { /*camisa */}
           </Iconos>
@@ -20,7 +18,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista>
-        <BotonLink botonNavegacion to={"/alcohol"}>
+        <BotonLink botonnavegacion={"true"} to={"/alcohol"}>
           <Iconos>
             <FaGlassCheers size={60}/> { /*alcohol */}
           </Iconos>
@@ -29,7 +27,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista >
-        <BotonLink botonNavegacion to={"/pantalones"}>
+        <BotonLink botonnavegacion={"true"} to={"/pantalones"}>
           <Iconos>
             <GiArmoredPants size={60}/> { /*pantalones */}
           </Iconos>
@@ -38,7 +36,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista >
-        <BotonLink botonNavegacion to={"/relojes"}>
+        <BotonLink botonnavegacion={"true"} to={"/relojes"}>
           <Iconos>
             <PiWatchDuotone size={60}/> { /*relojes */}
           </Iconos>
@@ -47,7 +45,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista >
-        <BotonLink botonNavegacion to={"/zapatos"}>
+        <BotonLink botonnavegacion={"true"} to={"/zapatos"}>
           <Iconos>
             <GiSonicShoes size={60}/> { /*zapatos */}
           </Iconos>
@@ -56,7 +54,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista >
-        <BotonLink botonNavegacion to={"/perfumes"}>
+        <BotonLink botonnavegacion={"true"} to={"/perfumes"}>
           <Iconos>
             <GiDelicatePerfume  size={60}/> { /*perfumes */}
           </Iconos>
@@ -65,7 +63,7 @@ export const NavegacionArticulos = () => {
       </NavegacionLista>
 
       <NavegacionLista>
-        <BotonLink botonNavegacion to={"/consolas"}>
+        <BotonLink botonnavegacion={"true"} to={"/consolas"}>
           <Iconos>
             <GiConsoleController size={60}/> { /*consolas */}
           </Iconos>

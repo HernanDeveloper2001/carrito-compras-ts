@@ -8,7 +8,6 @@ import React from "react"
 
 
 
-
 export const Camisas: React.FC = () => {
 
   const camisas = articulos.camisas;
@@ -24,11 +23,11 @@ export const Camisas: React.FC = () => {
           <IoArrowBackOutline/>
         </Iconos>
       </BotonAtras>
-      <Main mainArticulos>
+      <Main mainarticulos={"true"}>
         {camisas.map(item => {
           return (
             <MainArticulos key={item.id}>
-              {item.descuento > 0 && <ArticulosDescuentoStyle>{`-${item.descuento}%`}</ArticulosDescuentoStyle>}
+              {(item.descuento ?? 0) > 0 && <ArticulosDescuentoStyle>{`-${item.descuento}%`}</ArticulosDescuentoStyle>}
               <Subtitulo>{item.titulo}</Subtitulo>
               <Imagen 
                 src={item.imagen} 
@@ -37,7 +36,7 @@ export const Camisas: React.FC = () => {
               <ContenedorBotonesStyle>
                 {/*Ver contenido*/}
                 <BotonLink
-                  botonAgregar 
+                  botonagregar={"true"} 
                   to={`/camisas/descripcion/articulos/${item.titulo}`}
                   state={{
                     titulo: item.titulo,
@@ -47,9 +46,7 @@ export const Camisas: React.FC = () => {
                     identificacion: item.id,
                     descripcion: item.descripcion,
                     cantidad:item.cantidad
-                  }}
-                  padding="10px" 
-                  bRadius="5%">
+                  }}>
                   ver
                   <Iconos>
                     <LiaEyeSolid />
@@ -58,7 +55,7 @@ export const Camisas: React.FC = () => {
                 
                 {/*Agregar al carrito*/}
                 <BotonStyle
-                  onClick={({id,titulo,descuento,descripcion,precio,imagen,cantidad}) => anadirCarritoStore({
+                  onClick={() => anadirCarritoStore({
                     titulo: item.titulo,
                     descuento: item.descuento,
                     descripcion:item.descripcion,
@@ -66,9 +63,9 @@ export const Camisas: React.FC = () => {
                     imagen: item.imagen,
                     id:item.id,
                     cantidad: item.cantidad
-                  })} 
-                  padding="10px" 
-                  bRadius="5%">
+                  })}
+                  padding="10px"
+                  bradius="5px">
                   Agregar
                   <Iconos>
                     <FaCartPlus/>

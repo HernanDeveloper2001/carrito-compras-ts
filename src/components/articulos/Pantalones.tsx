@@ -22,11 +22,11 @@ export const Pantalones: React.FC = () => {
           <IoArrowBackOutline/>
         </Iconos>
       </BotonAtras>
-      <Main mainArticulos>
+      <Main mainarticulos={"true"}>
       {pantalones.map(item => {
         return (
           <MainArticulos key={item.id}>
-            {item.descuento > 0 && <ArticulosDescuentoStyle>{`-${item.descuento}%`}</ArticulosDescuentoStyle>}
+            {(item.descuento ?? 0) > 0 && <ArticulosDescuentoStyle>{`-${item.descuento}%`}</ArticulosDescuentoStyle>}
             <Subtitulo>{item.titulo}</Subtitulo>
             <Imagen 
               src={item.imagen} 
@@ -36,7 +36,7 @@ export const Pantalones: React.FC = () => {
             <ContenedorBotonesStyle>
               {/*Ver contenido*/}
               <BotonLink
-                botonAgregar 
+                botonagregar={"true"} 
                 to={`/pantalon/descripcion/articulos/${item.titulo}`}
                 state={{
                   titulo: item.titulo,
@@ -46,9 +46,7 @@ export const Pantalones: React.FC = () => {
                   identificacion: item.id,
                   descripcion: item.descripcion,
                   cantidad: item.cantidad,
-                }}
-                padding="10px" 
-                bRadius="5%">
+                }}>
                 ver
                 <Iconos>
                   <LiaEyeSolid />
@@ -56,7 +54,7 @@ export const Pantalones: React.FC = () => {
               </BotonLink>
               {/*Agregar al carrito*/}
               <BotonStyle
-                onClick={({id,titulo,descuento,descripcion,precio,imagen,cantidad}) => anadirCarritoStore({
+                onClick={() => anadirCarritoStore({
                   titulo: item.titulo,
                   descuento: item.descuento,
                   descripcion:item.descripcion,
@@ -66,8 +64,7 @@ export const Pantalones: React.FC = () => {
                   cantidad: item.cantidad
                 })} 
                 padding="10px" 
-                bRadius="5%" 
-                padding="10px" >
+                bradius="5%" >
                 Agregar
                 <Iconos>
                   <FaCartPlus/>

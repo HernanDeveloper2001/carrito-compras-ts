@@ -57,17 +57,17 @@ export const DescripcionArticulos: React.FC = () => {
  
   return (
     <>
-      <BotonAtras  to={-1} >
+      <BotonAtras to={-1} >
         <Iconos>
             <IoArrowBackOutline/>
         </Iconos>
       </BotonAtras>
       <Main position="relative">
-        <Subtitulo subtituloDescripcion>
+        <Subtitulo subtitulodescripcion={"true"}>
           { titulo }
         </Subtitulo>
           <Imagen 
-          imagenDescripcion 
+          imagendescripcion={"true"}
           src={imagen} />
           <ContenedorPreciosStyle>
             <DescuentoDescripcionStyle>
@@ -76,7 +76,7 @@ export const DescripcionArticulos: React.FC = () => {
             <PrecioArticuloStyle>
               { `$ ${precio}` }
             </PrecioArticuloStyle>
-            <PrecioArticuloStyle precioConDescuento>
+            <PrecioArticuloStyle preciocondescuento={"true"}>
               {`$ ${precio_con_descuento}`}
             </PrecioArticuloStyle>
           </ContenedorPreciosStyle>
@@ -97,19 +97,18 @@ export const DescripcionArticulos: React.FC = () => {
           {
             verMasDescripcion
             ? <BotonStyle 
-                botonVerMasDescripcion
+                botonvermasdescripcion={"true"}
                 onClick={handleVerMasDescripcion}>Ver menos
               </BotonStyle>
             : <BotonStyle 
-                botonVerMasDescripcion
+                botonvermasdescripcion={"true"}
                 onClick={handleVerMasDescripcion}>Ver mas
               </BotonStyle>
           }
           
-          <ContenedorBotonesStyle contenedorBotonesDescripcion>
+          <ContenedorBotonesStyle contenedorbotonesdescripcion={"true"}>
             <BotonesDescripcion
-              
-              onClick={(titulo,descuento,descripcion,precio,imagen,id,cantidad) => anadirCarritoStore({
+              onClick={() => anadirCarritoStore({
                 titulo: tituloState,
                 descuento: descuentoState,
                 descripcion: descricionState,
@@ -117,21 +116,14 @@ export const DescripcionArticulos: React.FC = () => {
                 imagen: imagenState,
                 id: idState,
                 cantidad:cantidadState,
-              })} 
-              padding="5px" 
-              bRadius="50px" 
-              mTop="10px">
+              })}>
               Agregar
               <Iconos>
                 <FaCartPlus/>
               </Iconos>
             </BotonesDescripcion>
 
-            <BotonesDescripcion
-              botonesDescripcion  
-              padding="5px" 
-              bRadius="50px" 
-              marginTop="10px">
+            <BotonesDescripcion>
               Comprar
               <Iconos>
                 <FaShoppingBag />
@@ -140,7 +132,7 @@ export const DescripcionArticulos: React.FC = () => {
           </ContenedorBotonesStyle>
 
       </Main>
-      <BotonAtras  to={-1} >
+      <BotonAtras to={-1} >
         <Iconos>
             <IoArrowBackOutline/>
         </Iconos>

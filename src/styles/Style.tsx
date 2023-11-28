@@ -2,43 +2,43 @@ import styled, {css, keyframes} from "styled-components";
 import { Link } from "react-router-dom"
 
 interface StyleProps {
-  mainArticulos?:boolean;
+  mainarticulos?:string;
   iconoBuscar?:boolean;
-  subtituloDescripcion?:string | number;
+  subtitulodescripcion?:string;
   iconoCancelar?:boolean;
-  botonAgregar?:boolean;
+  botonagregar?:string;
   position?:string;
-  contenedorBotonesDescripcion?:string | number;
+  contenedorbotonesdescripcion?:string;
   margin?:string;
   border?:string | number;
   width?:number;
   height?:number;
   bColor?:string | number;
   padding?:string | number;
-  bRadius?: string | number;
-  botonVerMasDescripcion?: string | number;
-  botonesCarritoStyle?: string | number;
-  botonIconoRemove?: string | number;
-  botonComprarCarrito?: string | number;
+  bradius?: string | number;
+  botonvermasdescripcion?: string;
+  botonesCarritoStyle?: boolean;
+  botonIconoRemove?: boolean;
+  botonComprarCarrito?: boolean;
   mTop?: string | number;
-  botonCarritoLink?: string | number;
+  botoncarritolink?: string;
   botonUsuario?: string | number;
   contenedorBotonesCarrito?: string | number;
   redesSociales?: string | number;
-  pagarArticulosCarrito?: string | number;
-  imagenDeCarga?: string | number;
-  imagenDescripcion?: string | number;
-  imagenDeCarrito?: string | number;
-  imagenDeCarritoNoArticulos?: string | number;
-  imagenDeRutaNoEncontrada?: string | number;
+  pagarArticulosCarrito?: boolean;
+  imagendecarga?: string;
+  imagendescripcion?: string;
+  imagenDeCarrito?: boolean;
+  imagenDeCarritoNoArticulos?: boolean;
+  imagenderutanoencontrada?: string ;
   verMasDescripcion?: boolean;
-  precioConDescuento?: string | number;
-  textoCarrito?: string | number;
+  preciocondescuento?: string;
+  textoCarrito?: boolean;
   tAlign?: string | number;
   botonAtras?: string | number;
-  mainCarrito?:string | number;
-  articulosCarrito?:string | number;
-  botonNavegacion?:string | number;
+  mainCarrito?:boolean;
+  articulosCarrito?:boolean;
+  botonnavegacion?:string;
 }
 
 const breakpoints = {
@@ -136,9 +136,9 @@ export const BotonLink = styled(Link)<StyleProps>`
   font-family: 'Montserrat', sans-serif;
   font-size:4vw;
   width: auto;
-  ${props => props.botonCarritoLink && botonCarritoLink}
-  ${props => props.botonNavegacion && botonNavegacion}
-  ${props => props.botonAgregar && botonAgregar}
+  ${props => props.botoncarritolink && botonCarritoLink}
+  ${props => props.botonnavegacion && botonNavegacion}
+  ${props => props.botonagregar && botonAgregar}
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width:${breakpoints.tablet}){
     font-size:3vw;
     width: auto;
@@ -151,7 +151,7 @@ export const BotonLink = styled(Link)<StyleProps>`
 `
 export const BotonStyle = styled.button<StyleProps>`
   background-color: ${prop => prop.bColor || null};
-  border-radius: ${props => props.bRadius || null};
+  border-radius: ${props => props.bradius || null};
   border: 1px solid #ff9500;
   background-color: yellow;
   padding: ${props => props.padding || "0"};
@@ -162,7 +162,7 @@ export const BotonStyle = styled.button<StyleProps>`
   width: ${props => props.width || "auto"};
   margin-top: ${props => props.mTop || null};
   cursor: pointer;
-  ${props => props.botonVerMasDescripcion && botonVerMasDescripcion}
+  ${props => props.botonvermasdescripcion && botonVerMasDescripcion}
   ${props => props.botonesCarritoStyle && botonesCarritoStyle}
   ${props => props.botonIconoRemove && botonIconoRemove}
   ${props => props.botonComprarCarrito && botonComprarCarrito}
@@ -183,7 +183,7 @@ export const ContenedorBotonesStyle = styled.div<StyleProps>`
   gap:20px;
   width:90%;
   padding: 10px 0;
-  ${props => props.contenedorBotonesDescripcion && contenedorBotonesDescripcion}
+  ${props => props.contenedorbotonesdescripcion && contenedorBotonesDescripcion}
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
     grid-template-columns: repeat(2, 1fr);
     width: 90%;
@@ -303,7 +303,6 @@ export const BotonesDescripcion = styled.button`
   border-radius:10px;
   color:#ff6500;
   width:100%;
-  border-radius: none;
   font-size: 4vw;
   font-family: 'Montserrat',sans-serif;
 
@@ -324,11 +323,11 @@ export const Imagen = styled.img<StyleProps>`
   height:200px;
   object-fit: contain;
   position: ${props => props.position || null};
-  ${props => props.imagenDeCarga && imagenDeCarga}
-  ${props => props.imagenDescripcion && imagenDescripcion}
+  ${props => props.imagendecarga && imagenDeCarga}
+  ${props => props.imagendescripcion && imagenDescripcion}
   ${props => props.imagenDeCarrito && imagenDeCarrito}
   ${props => props.imagenDeCarritoNoArticulos && imagenDeCarritoNoArticulos}
-  ${props => props.imagenDeRutaNoEncontrada && imagenDeRutaNoEncontrada}
+  ${props => props.imagenderutanoencontrada && imagenDeRutaNoEncontrada}
 `
 const imagenDeCarga = css`
   width: 100%;
@@ -435,7 +434,7 @@ export const Subtitulo = styled.h3<StyleProps>`
   font-weight: 700;
   z-index: 2;
   font-size: 4vw;
-  ${props => props.subtituloDescripcion && subtituloDescripcion}
+  ${props => props.subtitulodescripcion && subtituloDescripcion}
 
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
     font-size:3vw;
@@ -489,7 +488,7 @@ export const Main = styled.main<StyleProps>`
   width: 100%;
   ${props => props.mainCarrito && mainCarrito}
   ${props => props.position || null}
-  ${props => props.mainArticulos && mainArticulos}
+  ${props => props.mainarticulos && mainArticulos}
 
 `
 const mainArticulos = css`
@@ -537,6 +536,8 @@ export const MainArticulos = styled.article<StyleProps>`
   }
 `
 const articulosCarrito = css`
+  position:relative;
+  height:60px;
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
     height: 150px;
   }
@@ -664,7 +665,7 @@ export const PrecioArticuloStyle = styled.span<StyleProps>`
   font-size: 4vw;
   text-decoration: line-through;
   color: rgba(255, 0, 0, 0.89);
-  ${props => props.precioConDescuento && precioConDescuento}
+  ${props => props.preciocondescuento && precioConDescuento}
 
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
     font-size:3vw;

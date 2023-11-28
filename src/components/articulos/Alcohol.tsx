@@ -7,17 +7,8 @@ import CarritoAñadir from "../../carritoCompras/CarritoAñadir"
 import React from "react"
 
 
-interface Item {
-  id: string; // O el tipo de datos correcto para tu ID
-  titulo: string;
-  descuento: number;
-  descripcion: string;
-  precio: number;
-  imagen: string;
-  cantidad: number;
-}
 
-export const Alcohol: React.FC = () => {
+export const Alcohol: React.FC = ( ) => {
 
   const alcohol = articulos.alcohol;
   const {
@@ -31,11 +22,11 @@ export const Alcohol: React.FC = () => {
           <IoArrowBackOutline/>
         </Iconos>
       </BotonAtras>
-      <Main mainArticulos={true}>
-      {alcohol.map(item => {
+      <Main mainarticulos={"true"}>
+      {alcohol.map((item) => {
         return (
           <MainArticulos key={item.id} >
-            {item.descuento > 0 && <ArticulosDescuentoStyle>{`-${item.descuento}%`}</ArticulosDescuentoStyle>}
+            {(item.descuento ?? 0) > 0 && <ArticulosDescuentoStyle>{`-${item.descuento}%`}</ArticulosDescuentoStyle>}
             <Subtitulo>{item.titulo}</Subtitulo>
             <Imagen
               src={item.imagen} 
@@ -45,7 +36,7 @@ export const Alcohol: React.FC = () => {
             <ContenedorBotonesStyle>
               {/*Ver contenido*/}
               <BotonLink 
-                botonAgregar={true}
+                botonagregar={"true"}
                 to={`/alcohol/descripcion/articulos/${item.titulo}`}
                 state={{
                   titulo: item.titulo,
@@ -55,9 +46,7 @@ export const Alcohol: React.FC = () => {
                   id: item.id,
                   descripcion: item.descripcion,
                   cantidad:item.cantidad,
-                }}
-                padding="10px" 
-                bRadius="5%">
+                }}>
                 ver
                 <Iconos>
                   <LiaEyeSolid />
@@ -66,7 +55,7 @@ export const Alcohol: React.FC = () => {
 
               {/*Agregar al carrito*/}
               <BotonStyle 
-                onClick={({id,titulo,descuento,descripcion,precio,imagen,cantidad}) => anadirCarritoStore({
+                onClick={() => anadirCarritoStore({
                   titulo: item.titulo,
                   descuento: item.descuento,
                   descripcion:item.descripcion,
@@ -76,7 +65,7 @@ export const Alcohol: React.FC = () => {
                   cantidad: item.cantidad
                 })} 
                 padding="10px" 
-                bRadius="5%">
+                bradius="5%">
                 Agregar
                 <Iconos>
                   <FaCartPlus/>

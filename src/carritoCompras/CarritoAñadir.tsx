@@ -1,11 +1,13 @@
 import { carritoDatos } from "../store/carritoStore";
 
+
+
 const CarritoAñadir = () => {
 
   const  { añadirArticulos } = carritoDatos()
 
   function anadirCarritoStore(
-    { id, titulo, descuento, descripcion, precio, imagen, cantidad } : void) {
+    { id, titulo, descuento, descripcion, precio, imagen, cantidad }) {
       añadirArticulos({
         titulo,
         descuento,

@@ -1,6 +1,5 @@
 import { Iconos } from "../../styles/Style"
 import { Footer,LinkRedes,Text,ContenedorRedesSocialesStyle } from "../../styles/Style"
-// import imagenCreador from "../../assets/imagenes/imagen_de_creador/hernan.jpg"
 import { FaGithub, FaLinkedin,FaRegCopyright } from "react-icons/fa"
 import { BsFillPassportFill } from "react-icons/bs";
 import Busqueda from "../cabezera/busquedaArticulos/Busqueda";
