@@ -2,7 +2,14 @@ import styled, {css, keyframes} from "styled-components";
 import { Link } from "react-router-dom"
 
 interface StyleProps {
+  etiquetausuario?:string;
+  datosusuarios?:string;
+  botonusuarios?:string;
+  maincompras?:string;
+  botonenviarusuarios?:string;
+  imagenusuario?:string;
   mainarticulos?:string;
+  contenedorusuarioetiqueta?:string;
   iconoBuscar?:boolean;
   subtitulodescripcion?:string;
   iconoCancelar?:boolean;
@@ -17,6 +24,7 @@ interface StyleProps {
   padding?:string | number;
   bradius?: string | number;
   botonvermasdescripcion?: string;
+  errors?:string;
   botonescarritostyle?: string;
   botoniconoremove?: string;
   botoncomprarcarrito?: string;
@@ -34,7 +42,7 @@ interface StyleProps {
   verMasDescripcion?: boolean;
   preciocondescuento?: string;
   textocarrito?: string;
-  tAlign?: string | number;
+  talign?: string | number;
   botonAtras?: string | number;
   maincarrito?:string;
   articuloscarrito?:string;
@@ -139,6 +147,7 @@ export const BotonLink = styled(Link)<StyleProps>`
   ${props => props.botoncarritolink && botonCarritoLink}
   ${props => props.botonnavegacion && botonNavegacion}
   ${props => props.botonagregar && botonAgregar}
+  ${props => props.botonusuarios && botonUsuarios}
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width:${breakpoints.tablet}){
     font-size:3vw;
     width: auto;
@@ -166,6 +175,7 @@ export const BotonStyle = styled.button<StyleProps>`
   ${props => props.botonescarritostyle && botonesCarritoStyle}
   ${props => props.botoniconoremove && botonIconoRemove}
   ${props => props.botoncomprarcarrito && botonComprarCarrito}
+  ${props => props.botonenviarusuarios && botonEnviarUsuarios}
 
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width:${breakpoints.tablet}){
     font-size:3vw;
@@ -328,6 +338,7 @@ export const Imagen = styled.img<StyleProps>`
   ${props => props.imagendecarrito && imagenDeCarrito}
   ${props => props.imagendecarritonoarticulos && imagenDeCarritoNoArticulos}
   ${props => props.imagenderutanoencontrada && imagenDeRutaNoEncontrada}
+  ${props => props.imagenusuario && imagenUsuario}
 `
 const imagenDeCarga = css`
   width: 100%;
@@ -429,7 +440,7 @@ export const NavegacionLista = styled.li`
 `
 export const Subtitulo = styled.h3<StyleProps>`
   font-size: 20px;
-  text-align: ${props => props.tAlign || "center"};
+  text-align: ${props => props.talign || "center"};
   text-transform: capitalize;
   font-weight: 700;
   z-index: 2;
@@ -489,7 +500,6 @@ export const Main = styled.main<StyleProps>`
   ${props => props.maincarrito && mainCarrito}
   ${props => props.position || null}
   ${props => props.mainarticulos && mainArticulos}
-
 `
 const mainArticulos = css`
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
@@ -739,10 +749,11 @@ export const Text = styled.p<StyleProps>`
   text-transform: capitalize;
   font-weight: 200;
   ${props => props.textocarrito && textoCarrito}
-  text-align:${props => props.tAlign || "center"};
+  text-align:${props => props.talign || "center"};
   margin: ${props => props.margin || null};
   font-size: 4vw;
-
+  color: ${props => (props.errors ? "red" : "black")};
+  ${props => props.etiquetausuario && etiquetaUsuario}
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
     font-size:3vw;
   }
@@ -757,7 +768,7 @@ const textoCarrito = css<StyleProps>`
   width: 100%;
   padding: ${props => props.padding || null};
   font-weight: 200;
-  text-align: ${props => props.tAlign || null};
+  text-align: ${props => props.talign || null};
   font-size: 4vw;
 
   @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
@@ -767,4 +778,184 @@ const textoCarrito = css<StyleProps>`
   @media screen and (min-width: ${breakpoints.desktop}){
     font-size: 2vw;
   }
+`
+const etiquetaUsuario = css`
+  color: #ff6500;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  z-index: 1;
+  padding: 20px;
+  border-left: 5px solid #ff6500;
+  overflow: hidden;
+  overflow-x: scroll;
+  width: 100%;
+  text-overflow: ellipsis;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: darken(red, 15%); /* Fondo de la animación */
+    z-index: -2;
+    transition: background-color 0.3s; /* Transición para suavizar el cambio de color */
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: darken(yellow, 15%);
+    transition: all 3s;
+
+    z-index: -1;
+  }
+
+  &:hover {
+    color: #ff6500;
+    &:before {
+      width: 100%;
+    }
+    &:after {
+      background-color: #f4f48d; /* Cambia el fondo de la animación al hacer hover */
+    }
+  }
+`;
+
+// usaurios
+
+export const ContenedorDeDatosUsuario = styled.main<StyleProps>`
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+  ${props => props.datosusuarios && datosUsuarios }
+`
+const datosUsuarios = css`
+  display: grid;
+  row-gap: 50px;
+  place-items: center;
+  width: 100%;
+  @media screen and (min-width:${breakpoints.desktop}) {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+`
+export const FormularioDatosUsuario = styled.form`
+  width: 90%;
+  font-family: 'Montserrat',sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 4vw;
+  @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
+    font-size: 3vw;
+    gap:40px;
+  }
+
+  @media screen and (min-width: ${breakpoints.desktop}) {
+    font-size: 2vw;
+    gap: 60px;
+  }
+`
+export const ContenedorEntradaDeDatos = styled.div<StyleProps>`
+  width:100%;
+  height:auto;
+  ${props => props.contenedorusuarioetiqueta && contenedorUsuarioEtiqueta}
+`
+export const EntradaDeDatosUsuario = styled.input`
+  font-family: 'Montserrat',sans-serif;
+  outline: none;
+  border: 1px solid #ff6500;
+  background-color: yellow;
+  border-radius: 10px;
+  color:#ff6500;
+  width: 100%;
+  text-indent: 20px;
+  margin-top: 10px;
+  padding: 10px 0;
+  font-size: 4vw;
+  @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
+    font-size: 3vw;
+  }
+
+  @media screen and (min-width: ${breakpoints.desktop}) {
+    font-size: 2vw;
+  }
+`
+const botonUsuarios = css`
+  text-decoration: underline;
+  background-color: transparent;
+`
+const botonEnviarUsuarios = css`
+  background-color:yellow;
+  width: 60%;
+  align-self: center;
+  padding: 10px;
+  border: 1px solid #ff6500;
+  border-radius: 10px;
+  font-size: 4vw;
+  @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}){
+    font-size: 3vw;
+  }
+
+  @media screen and (min-width: ${breakpoints.desktop}) {
+    font-size: 2vw;
+  }
+`
+const contenedorUsuarioEtiqueta = css`
+  display: flex;
+  align-items: center;
+  @media screen and (min-width:${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+  }
+
+  @media screen and (min-width:${breakpoints.desktop}) {
+    width: 80%;
+  }
+`
+const imagenUsuario = css`
+  width:30%;
+  max-height: 50px;
+  object-fit: contain;
+`
+
+//
+
+export const Table = styled.table`
+  width: 90%;
+  border:1px solid #000;
+  border-radius:5px;
+  font-size: 4vw;
+  @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}) {
+    font-size: 3vw;
+  }
+  
+  @media screen and (min-width: ${breakpoints.desktop}) {
+    font-size: 2vw;
+  }
+`
+export const Tr = styled.tr`
+  border:1px solid #000;
+`
+export const Th = styled.th`
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  color: #000;
+  background-color: #ff6500;
+  width:auto;
+`
+export const Td = styled.td`
+  width: 50%;
+  padding: 10px;
+  background-color: #8bf5e5;
+  border:1px solid #000;
+  width:auto;
 `

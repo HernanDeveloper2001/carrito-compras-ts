@@ -11,9 +11,7 @@ import React from "react"
 export const Alcohol: React.FC = ( ) => {
 
   const alcohol = articulos.alcohol;
-  const {
-    anadirCarritoStore
-  } = CarritoAñadir();
+  const {anadirCarritoStore} = CarritoAñadir();
   
   return (
     <>

@@ -8,7 +8,6 @@ const Busqueda = () => {
 
   function botonComprasEstado(){
     setBotonComprasActivo(true);
-    console.log("activo")
   }
 
   function activarInput(){

@@ -10,6 +10,11 @@ import { Consolas } from "../components/articulos/Consolas";
 import { DescripcionArticulos } from "../components/articulos/DescripcionArticulos";
 import { CarritoCompras } from "../carritoCompras/CarritoCompras";
 import { PantallaError } from "../components/articulos/PantallaError";
+import Usuarios from "../components/usuario/Usuarios";
+import PanelDeAdministrador from "../components/usuario/PanelDeAdministrador";
+import Compras from "../components/articulos/Compras";
+import ComprasCompradas from "../components/articulos/ComprasCompradas";
+
 
 const RoutesArticulos = () => {
   return (
@@ -24,6 +29,10 @@ const RoutesArticulos = () => {
         <Route path="/articulo/consolas/" element={<Consolas />} />
         <Route path="/:articulo/descripcion/articulos/:id" element={<DescripcionArticulos />} />
         <Route path="/carrito/articulos" element={<CarritoCompras />} />
+        <Route path="/usuario/" element={<Usuarios />} />
+        <Route path="/panel_administrador/usuario/:usuario/" element={<PanelDeAdministrador />} />
+        <Route path="/compras/" element={<Compras />} />
+        <Route path="/compras/comprasCompradas/" element={<ComprasCompradas />} />
         <Route path="*" element={<PantallaError />} />
     </Routes>
   )

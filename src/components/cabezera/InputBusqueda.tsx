@@ -2,6 +2,7 @@ import { HeaderInput,HeaderContenedor,Iconos,BotonLink,CantidadCarritoStyle } fr
 import { LuShoppingCart } from "react-icons/lu";
 import { carritoDatos } from "../../store/carritoStore";
 import Busqueda from "./busquedaArticulos/Busqueda";
+import { LuUser } from "react-icons/lu";
 
 
 const InputBusqueda:React.FC = () => {
@@ -48,11 +49,17 @@ const InputBusqueda:React.FC = () => {
               botoncarritolink={"true"}
               to={"/carrito/articulos"}>
               <Iconos>
-                <LuShoppingCart size={windowWidth > 480 ? 45 : 30}/>
+                <LuShoppingCart size={windowWidth > 480 ? 45 : windowWidth > 1024 ? 45 : 30} />
               </Iconos>
             </BotonLink>
         }
-    
+
+        <BotonLink to={"/usuario/"}>
+          <Iconos>
+            <LuUser size={windowWidth > 480 ? 45 : windowWidth > 1024 ? 45 : 30} />
+          </Iconos>
+        </BotonLink>
+
       </HeaderContenedor>
     </>
   )

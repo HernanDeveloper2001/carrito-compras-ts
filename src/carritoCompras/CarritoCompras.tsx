@@ -19,6 +19,8 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaCircleXmark } from "react-icons/fa6";
 import imagenCarritoVacio from "../assets/imagenes/imagenCarritoCompras/carritoVacio2.jpg"
 import React from "react"
+import { Link } from "react-router-dom";
+
 
 
 interface ArticulosCompras {
@@ -38,7 +40,6 @@ export const CarritoCompras: React.FC = () => {
     decrementarArticulo,
     añadirArticulos,
   } = carritoDatos();
-
   const { windowWidth } = Busqueda();
 
   // Agrupar los objetos por su id
@@ -70,7 +71,6 @@ export const CarritoCompras: React.FC = () => {
 
   articulosGuardados.forEach((item) => {
     const { id, descuento} = item;
-  
     if (!grupos[id]) {
       // Aquí, asumo que ArticulosCompras tiene las mismas propiedades que Articulo
       grupos[id] = { item: { ...item, descuento: descuento || 0 }, cantidad: 1 };
@@ -94,7 +94,6 @@ export const CarritoCompras: React.FC = () => {
     })
   }
 
-  
   // Renderizar componentes para cada grupo
   const componentes = Object.values(grupos).map((grupo) => {
     const { item ,cantidad } = grupo;
@@ -124,7 +123,7 @@ export const CarritoCompras: React.FC = () => {
           <Imagen imagendecarrito={"true"} src={imagen} />
 
           <ContenedorCarritoPrecios>
-            <Subtitulo tAlign="left">
+            <Subtitulo talign="left">
               {titulo}
             </Subtitulo>
             {
@@ -206,34 +205,40 @@ export const CarritoCompras: React.FC = () => {
               <MainArticulos
                 articuloscarrito={"true"}
                 pagararticuloscarrito={"true"}>
-                <Text textocarrito={"true"} tAlign="left">
+                <Text textocarrito={"true"} talign="left">
                   Subtotal:
                 </Text>
-                <Text textocarrito={"true"} tAlign="right">
+                <Text textocarrito={"true"} talign="right">
                   {`$ ${subTotal}`}
                 </Text>
 
-                <Text textocarrito={"true"} tAlign="left">
+                <Text textocarrito={"true"} talign="left">
                   Descuento en productos:
                 </Text>
-                <Text textocarrito={"true"} tAlign="right">
+                <Text textocarrito={"true"} talign="right">
                   {`-$ ${descuentoTotal}`}
                 </Text>
 
-                <Text textocarrito={"true"} tAlign="left">
+                <Text textocarrito={"true"} talign="left">
                   Total:
                 </Text>
-                <Text textocarrito={"true"} tAlign="right">
+                <Text textocarrito={"true"} talign="right">
                   {`$ ${precioTotal}`}
                 </Text>
               </MainArticulos>
-              <BotonStyle botoncomprarcarrito={"true"}>
+              <BotonStyle
+                as={Link}
+                to="/compras"
+                state={{
+                  grupos,
+                  precioTotal
+                }}
+                botoncomprarcarrito={"true"}>
                 Ir a pagar / Total: {`$ ${precioTotal}`}
               </BotonStyle>
             </>
           )
         }
-        
       </Main>
     </>
   );

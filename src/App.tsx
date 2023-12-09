@@ -6,14 +6,13 @@ import RoutesArticulos from "./routes/RoutesArticulos";
 import PantallaCarga from "./components/articulos/PantallaCarga";
 import { useState, useEffect } from "react"
 
-
 const App = () => {
 
   interface InicioProp {
     loading:boolean
   }
-
   const [loading, setLoading] = useState<InicioProp["loading"]>(true);
+
 
   useEffect(() => {
     // Simula una carga de 2 segundos
@@ -29,12 +28,12 @@ const App = () => {
     <>
       {loading 
       ? <PantallaCarga /> 
-      : <>
-          <Cabezera/>
-          <NavegacionArticulos />
-          <RoutesArticulos />
-          <PieDePagina/>
-        </>
+      :<>
+        <Cabezera/>
+        <NavegacionArticulos />
+        <RoutesArticulos />
+        <PieDePagina/>
+      </>
       }
     </>
   )

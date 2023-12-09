@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import { nanoid } from "nanoid";
+import imagenHernan from "../assets/imagenes/usuarios/pinocho.jpg";
 
 
 export interface Articulo {
@@ -17,6 +19,7 @@ interface DatosCarrito {
   quitarArticulo: (id: string | number) => void;
   decrementarArticulo: (id: string | number) => void;
 }
+
 
 export const carritoDatos = create<DatosCarrito>(set => ({
   articulosGuardados : [],
@@ -46,4 +49,60 @@ export const carritoDatos = create<DatosCarrito>(set => ({
       // If the item with the specified id is not found, return the current state
       return state;
     })
+}))
+
+
+// store de usuarios
+
+export interface Usuarios {
+  id:string;
+  usuario: string;
+  contraseña: string;
+  dinero:number;
+  imagen:string;
+  edad:number;
+  articulosComprados: string | number[];
+}
+
+interface DatosUsuarios {
+  usuarios: Usuarios[];
+  agregarComprasUsuarios: (usuarioId: string, item : Usuarios) => unknown;
+  actualizarDineroUsuario: (usuarioId: string ,item : Usuarios) => unknown;
+}
+
+export const usuariosDatos = create<DatosUsuarios>((set) => ({
+  usuarios:[{
+    id:nanoid(),
+    usuario: "hernan",
+    contraseña: "mariela123",
+    dinero: 300000000,
+    edad: 23,
+    articulosComprados: [],
+    imagen:imagenHernan
+  },
+  ],
+  agregarComprasUsuarios: (usuarioId, item) =>
+    set((state) => {
+      const usuariosActualizados = state.usuarios.map((usuario) =>
+        usuario.id === usuarioId
+          ? { 
+              ...usuario, 
+              articulosComprados: [
+                ...usuario.articulosComprados, 
+                item
+              ] 
+            }
+          : usuario
+      );
+      return { usuarios: usuariosActualizados};
+  }),
+  actualizarDineroUsuario : (usuarioId, nuevoDinero) =>
+  set((state) => {
+    const usuariosActualizados = state.usuarios.map((usuario) =>
+      usuario.id === usuarioId
+        ? { ...usuario, dinero: nuevoDinero }
+        : usuario
+    )
+    return { usuarios: usuariosActualizados };
+  })
 }))

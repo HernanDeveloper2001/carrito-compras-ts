@@ -1,8 +1,6 @@
 import {  useLocation } from "react-router-dom"
-import CarritoAñadir from "../../carritoCompras/CarritoAñadir";
-import { Main,Subtitulo,Imagen,ContenedorPreciosStyle,PrecioArticuloStyle,DescuentoDescripcionStyle,DescripcionArticulo,BotonStyle,Iconos, BotonAtras, ContenedorBotonesStyle,BotonesDescripcion } from "../../styles/Style"
+import { Main,Subtitulo,Imagen,ContenedorPreciosStyle,PrecioArticuloStyle,DescuentoDescripcionStyle,DescripcionArticulo,BotonStyle,Iconos, BotonAtras } from "../../styles/Style"
 import { useState } from 'react';
-import { FaCartPlus,FaShoppingBag  } from "react-icons/fa"
 import { IoArrowBackOutline } from "react-icons/io5"
 import React from "react"
 import Busqueda from "../cabezera/busquedaArticulos/Busqueda";
@@ -14,27 +12,12 @@ export const DescripcionArticulos: React.FC = () => {
 
   const {
     titulo, 
-    id, 
     descripcion, 
     precio, 
     imagen, 
     descuento,
-    cantidad,
   } = location.state
 
-  const cantidadState = cantidad;
-  const idState = id;
-  const descricionState = descripcion;
-  const tituloState = titulo;
-  const precioState = precio;
-  const imagenState = imagen;
-  const descuentoState = descuento;
-
-
-  const {
-    anadirCarritoStore
-  } = CarritoAñadir()
-    
   const [verMasDescripcion, setVerMasDescripcion] = useState(false);
 
   // mobile
@@ -54,7 +37,7 @@ export const DescripcionArticulos: React.FC = () => {
   }
   
   const precio_con_descuento = precio - (precio * (descuento / 100));
- 
+
   return (
     <>
       <BotonAtras to={`/`} >
@@ -105,32 +88,7 @@ export const DescripcionArticulos: React.FC = () => {
                 onClick={handleVerMasDescripcion}>Ver mas
               </BotonStyle>
           }
-          
-          <ContenedorBotonesStyle contenedorbotonesdescripcion={"true"}>
-            <BotonesDescripcion
-              onClick={() => anadirCarritoStore({
-                titulo: tituloState,
-                descuento: descuentoState,
-                descripcion: descricionState,
-                precio: precioState,
-                imagen: imagenState,
-                id: idState,
-                cantidad:cantidadState,
-              })}>
-              Agregar
-              <Iconos>
-                <FaCartPlus/>
-              </Iconos>
-            </BotonesDescripcion>
-
-            <BotonesDescripcion>
-              Comprar
-              <Iconos>
-                <FaShoppingBag />
-              </Iconos>
-            </BotonesDescripcion>
-          </ContenedorBotonesStyle>
-
+           
       </Main>
       <BotonAtras to={`/`} >
         <Iconos>
