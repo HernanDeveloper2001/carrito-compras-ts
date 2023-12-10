@@ -5,15 +5,30 @@ import { usuariosDatos } from "../../store/carritoStore";
 import { carritoDatos } from "../../store/carritoStore";
 
 
-const Compras = () => {
+interface Grupo {
+  item: {
+    item: string;
+    precio: number;
+    descuento: number;
+    titulo: string;
+  };
+  cantidad: number; // Agregar el tipo para cantidad
+}
+
+interface Grupos {
+  [key: string]: Grupo;
+}
+
+const Compras: React.FC = () => {
   const location = useLocation();
   const { grupos, precioTotal } = location.state;
-  const { usuarios, agregarComprasUsuarios } = usuariosDatos();
+  const { usuarios, agregarComprasUsuarios,actualizarDineroUsuario } = usuariosDatos();
   const [compraRealizada, setCompraRealizada] = useState(false);
   const usuario = usuarios[0];
   const [nDinero, setNDinero] = useState(usuario.dinero)
   const { quitarArticulo } = carritoDatos();
   const rutaNavegacion = useNavigate();
+
 
   useEffect(() => {
     if (compraRealizada) {
@@ -32,13 +47,13 @@ const Compras = () => {
         setTimeout(() => {
           agregarComprasUsuarios(usuario.id, compra);
           quitarArticulo(item.id);
-        }, 3000);
+        }, 1000);
       })
       const nuevoDinero = usuario.dinero - precioTotal;
       // Actualiza el dinero del usuario después de realizar la compra
       setNDinero(nuevoDinero);
       setCompraRealizada(true)
-      usuariosDatos().actualizarDineroUsuario(usuario.id, nuevoDinero);
+      actualizarDineroUsuario(usuario.id, nuevoDinero);
     }
   }
 
@@ -47,19 +62,35 @@ const Compras = () => {
     <Main>
       <Text>{`Tú dinero: ${nDinero}`}</Text>
       <Table>
+        <thead>
         <Tr>
           <Th>{`Nombre`}</Th>
           <Th>{`Cantidad`}</Th>
           <Th>{`Precio`}</Th>
         </Tr>
-        {Object.values(grupos).map(({ item, cantidad }) => (
-          <Tr key={item.titulo}>
-            <Td>{item.titulo}</Td>
-            <Td>{cantidad}</Td>
-            <Td>{item.precio}</Td>
-          </Tr>
-        ))}
+        </thead>
+        {Object.values(grupos).map(({ item, cantidad}) => {
+          const {precio, descuento} = item;
+          const precio_con_descuento = precio - (precio * (descuento / 100));
+          const precio_con_cantidad = precio_con_descuento * cantidad;
+          
+          return (
+            <tbody key={item.id}>
+              <Tr>
+                <Td>{item.titulo}</Td>
+                <Td>{cantidad}</Td>
+                <Td>{precio_con_cantidad}</Td>
+              </Tr>
+            </tbody>
+          )
+        })}
       </Table>
+      {
+        nDinero < precioTotal 
+        ?<Text style={{color:"red"}}>¡No tienes dinero para comprar!</Text>
+        :null
+      }
+      <Text>{precioTotal.toFixed(2)}</Text>
       <BotonStyle
         onClick={() => enviarComprasUsuarios({ grupos })}
         bradius={"10px"}

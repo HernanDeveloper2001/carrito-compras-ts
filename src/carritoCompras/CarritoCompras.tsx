@@ -209,21 +209,21 @@ export const CarritoCompras: React.FC = () => {
                   Subtotal:
                 </Text>
                 <Text textocarrito={"true"} talign="right">
-                  {`$ ${subTotal}`}
+                  {`$ ${subTotal.toFixed(2)}`}
                 </Text>
 
                 <Text textocarrito={"true"} talign="left">
                   Descuento en productos:
                 </Text>
                 <Text textocarrito={"true"} talign="right">
-                  {`-$ ${descuentoTotal}`}
+                  {`-$ ${descuentoTotal.toFixed(2)}`}
                 </Text>
 
                 <Text textocarrito={"true"} talign="left">
                   Total:
                 </Text>
                 <Text textocarrito={"true"} talign="right">
-                  {`$ ${precioTotal}`}
+                  {`$ ${precioTotal.toFixed(2)}`}
                 </Text>
               </MainArticulos>
               <BotonStyle
@@ -234,7 +234,7 @@ export const CarritoCompras: React.FC = () => {
                   precioTotal
                 }}
                 botoncomprarcarrito={"true"}>
-                Ir a pagar / Total: {`$ ${precioTotal}`}
+                Ir a pagar / Total: {`$ ${precioTotal.toFixed(2)}`}
               </BotonStyle>
             </>
           )

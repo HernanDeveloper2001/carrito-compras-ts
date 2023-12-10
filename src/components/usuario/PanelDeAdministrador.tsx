@@ -1,13 +1,16 @@
 import { ContenedorDeDatosUsuario, Text, ContenedorEntradaDeDatos, Imagen } from "../../styles/Style";
 import { useLocation } from "react-router-dom";
+import React from "react"
 
+interface Props {
+  item: string  
+}
 
-const PanelDeAdministrador = () => {
+const PanelDeAdministrador : React.FC = () => {
 
   const datosUsuarios = useLocation();
   const { usuario, id, contraseña, dinero, compras, edad, imagen } =  datosUsuarios.state;
   const ocultarContraseña = "*".repeat(contraseña.length)
-
 
   return (
     <ContenedorDeDatosUsuario datosusuarios={"true"}>
@@ -35,7 +38,7 @@ const PanelDeAdministrador = () => {
       <ContenedorEntradaDeDatos contenedorusuarioetiqueta={"true"}>
         <Text 
           etiquetausuario={"true"}>
-            {`Compras: ${Object.values(compras).map(({item}) => item.titulo)}`}
+            {`Compras: ${Object.values(compras).map(({item}) => item.titulo).join(" - ")}`}
         </Text>
       </ContenedorEntradaDeDatos>
 
