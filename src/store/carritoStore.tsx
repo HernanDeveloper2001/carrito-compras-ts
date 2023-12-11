@@ -66,8 +66,8 @@ export interface Usuarios {
 
 interface DatosUsuarios {
   usuarios: Usuarios[];
-  agregarComprasUsuarios: (usuarioId: string, item : Usuarios) => unknown;
-  actualizarDineroUsuario: (usuarioId: string ,item : Usuarios) => unknown;
+  agregarComprasUsuarios: (usuarioId: string, item : Usuarios) => void;
+  actualizarDineroUsuario: (usuarioId: string ,item : Usuarios) => void;
 }
 
 export const usuariosDatos = create<DatosUsuarios>((set) => ({

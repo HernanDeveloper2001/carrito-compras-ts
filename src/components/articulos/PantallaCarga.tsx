@@ -6,7 +6,7 @@ import React from "react"
 const PantallaCarga: React.FC = () => {
   return (
     <>
-      <Imagen imagendecarga={"true"} src={imagenDeCarga} alt="cargando imagen"></Imagen>
+      <Imagen imagendecarga="true" src={imagenDeCarga} alt="cargando imagen"></Imagen>
     </>
   )
 }

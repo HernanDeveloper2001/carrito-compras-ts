@@ -1,59 +1,50 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BotonStyle, Main, Text, Table, Tr, Th, Td } from "../../styles/Style";
 import { usuariosDatos } from "../../store/carritoStore";
 import { carritoDatos } from "../../store/carritoStore";
+import { Usuarios } from "../../store/carritoStore";
 
-
-interface Grupo {
+interface Compra {
   item: {
-    item: string;
-    precio: number;
-    descuento: number;
+    id:string;
+    precio:number;
+    descuento?: number | null;
+    descripcion: string;
+    imagen: string; 
     titulo: string;
-  };
-  cantidad: number; // Agregar el tipo para cantidad
+    cantidad:number;
+  },
+  cantidad: number;
 }
 
-interface Grupos {
-  [key: string]: Grupo;
-}
+
 
 const Compras: React.FC = () => {
   const location = useLocation();
   const { grupos, precioTotal } = location.state;
   const { usuarios, agregarComprasUsuarios,actualizarDineroUsuario } = usuariosDatos();
-  const [compraRealizada, setCompraRealizada] = useState(false);
   const usuario = usuarios[0];
   const [nDinero, setNDinero] = useState(usuario.dinero)
   const { quitarArticulo } = carritoDatos();
   const rutaNavegacion = useNavigate();
 
 
-  useEffect(() => {
-    if (compraRealizada) {
-      rutaNavegacion("/compras/comprasCompradas/")
-    }
-  }, [compraRealizada]);
-
-  if (compraRealizada) {
-    return null;
-  }
-
-  function enviarComprasUsuarios({ grupos }) {
+  function enviarComprasUsuarios<T>({ grupos }: { grupos: Record<string, T>}) {
     if (usuario.dinero >= precioTotal) {
-      Object.values(grupos).forEach(({ item, cantidad }) => {
+      Object.values(grupos).forEach(({ item, cantidad}) => {
+        const { id } = item;
         const compra = { item, cantidad };
         setTimeout(() => {
           agregarComprasUsuarios(usuario.id, compra);
-          quitarArticulo(item.id);
+          quitarArticulo(id);
         }, 1000);
+        const nuevoDinero = usuario.dinero - precioTotal;
+        // Actualiza el dinero del usuario después de realizar la compra
+        setNDinero(nuevoDinero);
+        actualizarDineroUsuario(usuario.id, nuevoDinero);
+        rutaNavegacion("/compras/comprasCompradas/")
       })
-      const nuevoDinero = usuario.dinero - precioTotal;
-      // Actualiza el dinero del usuario después de realizar la compra
-      setNDinero(nuevoDinero);
-      setCompraRealizada(true)
-      actualizarDineroUsuario(usuario.id, nuevoDinero);
     }
   }
 
@@ -69,15 +60,14 @@ const Compras: React.FC = () => {
           <Th>{`Precio`}</Th>
         </Tr>
         </thead>
-        {Object.values(grupos).map(({ item, cantidad}) => {
-          const {precio, descuento} = item;
+        {Object.values(grupos).map(({ item, cantidad}: Compra) => {
+          const {precio, descuento, titulo} = item;
           const precio_con_descuento = precio - (precio * (descuento / 100));
           const precio_con_cantidad = precio_con_descuento * cantidad;
-          
           return (
-            <tbody key={item.id}>
+            <tbody key={titulo}>
               <Tr>
-                <Td>{item.titulo}</Td>
+                <Td>{titulo}</Td>
                 <Td>{cantidad}</Td>
                 <Td>{precio_con_cantidad}</Td>
               </Tr>

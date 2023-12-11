@@ -640,6 +640,7 @@ export const ArticulosDescuentoStyle = styled.span`
   background-color:red;
   transform: translate(20%, -50%);
   font-weight: 700;
+
  
   &::before {
     content: " ";
