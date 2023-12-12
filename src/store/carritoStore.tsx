@@ -61,13 +61,13 @@ export interface Usuarios {
   dinero:number;
   imagen:string;
   edad:number;
-  articulosComprados: string | number[];
+  articulosComprados: unknown[];
 }
 
 interface DatosUsuarios {
   usuarios: Usuarios[];
-  agregarComprasUsuarios: (usuarioId: string, item : Usuarios) => void;
-  actualizarDineroUsuario: (usuarioId: string ,item : Usuarios) => void;
+  agregarComprasUsuarios: (usuarioId: string, item : Usuarios, ) => void;
+  actualizarDineroUsuario: (usuarioId: string, nuevoDinero: number,) => void;
 }
 
 export const usuariosDatos = create<DatosUsuarios>((set) => ({
@@ -78,11 +78,10 @@ export const usuariosDatos = create<DatosUsuarios>((set) => ({
     dinero: 300000000,
     edad: 23,
     articulosComprados: [],
-    imagen:imagenHernan
+    imagen:imagenHernan,
   },
   ],
-  agregarComprasUsuarios: (usuarioId, item) =>
-    set((state) => {
+  agregarComprasUsuarios: (usuarioId, item) => set((state) => {
       const usuariosActualizados = state.usuarios.map((usuario) =>
         usuario.id === usuarioId
           ? { 
@@ -96,8 +95,7 @@ export const usuariosDatos = create<DatosUsuarios>((set) => ({
       );
       return { usuarios: usuariosActualizados};
   }),
-  actualizarDineroUsuario : (usuarioId, nuevoDinero) =>
-  set((state) => {
+  actualizarDineroUsuario : (usuarioId, nuevoDinero) => set((state) => {
     const usuariosActualizados = state.usuarios.map((usuario) =>
       usuario.id === usuarioId
         ? { ...usuario, dinero: nuevoDinero }

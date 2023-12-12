@@ -2,15 +2,13 @@ import { ContenedorDeDatosUsuario, Text, ContenedorEntradaDeDatos, Imagen } from
 import { useLocation } from "react-router-dom";
 import React from "react"
 
-interface Props {
-  item: string  
-}
 
 const PanelDeAdministrador : React.FC = () => {
 
   const datosUsuarios = useLocation();
   const { usuario, id, contraseña, dinero, compras, edad, imagen } =  datosUsuarios.state;
   const ocultarContraseña = "*".repeat(contraseña.length)
+  
 
   return (
     <ContenedorDeDatosUsuario datosusuarios={"true"}>
@@ -36,10 +34,18 @@ const PanelDeAdministrador : React.FC = () => {
       </ContenedorEntradaDeDatos>
 
       <ContenedorEntradaDeDatos contenedorusuarioetiqueta={"true"}>
-        <Text 
-          etiquetausuario={"true"}>
-            {`Compras: ${Object.values(compras).map(({item}) => item.titulo).join(" - ")}`}
-        </Text>
+      <Text etiquetausuario={"true"}>
+            {`Compras: ${Object.values(compras).map((grupo: unknown) => {
+              if (typeof grupo === 'object' && grupo !== null) {
+                const { item } = grupo;
+                if (item) {
+                  const { titulo } = item;
+                  return titulo;
+                }
+              }
+              return ''; // Manejar el caso en que 'item' no existe o es null
+            }).join(', ')}`}
+          </Text>
       </ContenedorEntradaDeDatos>
 
       <ContenedorEntradaDeDatos contenedorusuarioetiqueta={"true"}>

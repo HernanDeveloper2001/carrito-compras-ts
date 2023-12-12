@@ -21,7 +21,7 @@ const RoutesArticulos = () => {
     <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/articulo/camisas/" element={<Camisas />} />
-        <Route path="/articulo/pantalones/" element={<Pantalones />} />
+        <Route path="/articulo/pantalon/" element={<Pantalones />} />
         <Route path="/articulo/zapatos/" element={<Zapatos />} />
         <Route path="/articulo/perfumes/" element={<Perfumes />} />
         <Route path="/articulo/alcohol/" element={<Alcohol />} />
