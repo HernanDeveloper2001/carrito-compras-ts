@@ -4,17 +4,15 @@ import { BotonStyle, Main, Text, Table, Tr, Th, Td } from "../../styles/Style";
 import { usuariosDatos } from "../../store/carritoStore";
 import { carritoDatos } from "../../store/carritoStore";
 
-
-interface ArticulosCompras {
+interface ArticuloCompra {
   id: string;
   cantidad: number;
   titulo: string;
   precio: number;
   descuento: number;
   descripcion: string;
-  imagen:string;
+  imagen: string;
 }
-
 
 const Compras: React.FC = () => {
   const location = useLocation();
@@ -26,19 +24,14 @@ const Compras: React.FC = () => {
   const rutaNavegacion = useNavigate();
 
 
-  const enviarComprasUsuarios = ({ grupos }: { grupos: { [key: string]: { item: { id: string }; /* other properties */ } }}) => {
+  const enviarComprasUsuarios = ({ grupos }: { grupos: { [key: string]: ArticuloCompra & { cantidad: number} } }) => {
     // Assuming "usuario" and "precioTotal" are defined somewhere
     if (usuario.dinero >= precioTotal) {
-      Object.values(grupos).forEach((itemCompras: { item: { id: string }; /* other properties */ }) => {
-        const { item } = itemCompras;
-        const { id } = item;
-        // const compra = { item, cantidad };
-        setTimeout(() => {
-          agregarComprasUsuarios(usuario.id, itemCompras);
-          quitarArticulo(id);
-        }, 1000);
-        const nuevoDinero = usuario.dinero - precioTotal;
-        // Actualiza el dinero del usuario después de realizar la compra
+      Object.values(grupos).forEach((itemCompras) => {
+        const { item, cantidad } = itemCompras;
+        agregarComprasUsuarios(usuario.id, itemCompras);
+        quitarArticulo(item.id); // Uncomment this line if needed
+        const nuevoDinero = usuario.dinero - (precioTotal * cantidad);
         setNDinero(nuevoDinero);
         actualizarDineroUsuario(usuario.id, nuevoDinero);
         rutaNavegacion("/compras/comprasCompradas/");

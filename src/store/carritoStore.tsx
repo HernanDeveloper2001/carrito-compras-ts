@@ -53,6 +53,15 @@ export const carritoDatos = create<DatosCarrito>(set => ({
 
 
 // store de usuarios
+interface ArticuloCompra {
+  id: string;
+  cantidad: number;
+  titulo: string;
+  precio: number;
+  descuento: number;
+  descripcion: string;
+  imagen: string;
+}
 
 export interface Usuarios {
   id:string;
@@ -61,12 +70,12 @@ export interface Usuarios {
   dinero:number;
   imagen:string;
   edad:number;
-  articulosComprados: unknown[];
+  articulosComprados:ArticuloCompra[];
 }
 
 interface DatosUsuarios {
   usuarios: Usuarios[];
-  agregarComprasUsuarios: (usuarioId: string, item : Usuarios, ) => void;
+  agregarComprasUsuarios: (usuarioId: string, item : ArticuloCompra, ) => void;
   actualizarDineroUsuario: (usuarioId: string, nuevoDinero: number,) => void;
 }
 
