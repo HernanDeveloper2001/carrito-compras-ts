@@ -48,16 +48,16 @@ const PanelDeAdministrador : React.FC = () => {
 
       <ContenedorEntradaDeDatos contenedorusuarioetiqueta={"true"}>
       <Text etiquetausuario={"true"}>
-            {`Compras: ${Object.values(compras).filter((grupo): grupo is ArticuloCompra => typeof grupo === 'object' && grupo !== null)
-              .map((grupo) => {
-                const { item } = grupo;
-                if (item) {
-                  const { titulo } = item;
-                  return titulo;
-                }
-                return ''; // Manejar el caso en que 'item' no existe o es null
-              }) // Manejar el caso en que 'item' no existe o es null
-            })`}
+      {`Compras: ${Object.values(compras)
+        .filter((grupo): grupo is ArticuloCompra => typeof grupo === 'object' && grupo !== null)
+        .map((grupo) => {
+          const { item } = grupo;
+          if (item) {
+            const { titulo } = item;
+            return titulo;
+          }
+          return ''; // Manejar el caso en que 'item' no existe o es null
+        }).join(', ')}`}
           </Text>
       </ContenedorEntradaDeDatos>
 
