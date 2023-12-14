@@ -56,7 +56,7 @@ const PanelDeAdministrador : React.FC = () => {
                   return titulo;
                 }
                 return ''; // Manejar el caso en que 'item' no existe o es null
-              }).join(" - ") // Manejar el caso en que 'item' no existe o es null
+              }) // Manejar el caso en que 'item' no existe o es null
             })`}
           </Text>
       </ContenedorEntradaDeDatos>
