@@ -2,6 +2,19 @@ import { ContenedorDeDatosUsuario, Text, ContenedorEntradaDeDatos, Imagen } from
 import { useLocation } from "react-router-dom";
 import React from "react"
 
+interface ArticuloCompra {
+  cantidad:number,
+  item: {
+    id:string,
+    descripcion: string,
+    precio:number,
+    cantidad:number,
+    descuento?:number | null,
+    imagen:string,
+    titulo:string
+  }
+}
+
 
 const PanelDeAdministrador : React.FC = () => {
 
@@ -35,15 +48,15 @@ const PanelDeAdministrador : React.FC = () => {
 
       <ContenedorEntradaDeDatos contenedorusuarioetiqueta={"true"}>
       <Text etiquetausuario={"true"}>
-            {`Compras: ${Object.values(compras).map((grupo) => {
-              if (typeof grupo === 'object' && grupo !== null) {
+            {`Compras: ${Object.values(compras).filter((grupo): grupo is ArticuloCompra => typeof grupo === 'object' && grupo !== null)
+              .map((grupo) => {
                 const { item } = grupo;
                 if (item) {
                   const { titulo } = item;
                   return titulo;
                 }
-              }
-              return ''; // Manejar el caso en que 'item' no existe o es null
+                return ''; // Manejar el caso en que 'item' no existe o es null
+              }) // Manejar el caso en que 'item' no existe o es null
             }).join(' - ')}`}
           </Text>
       </ContenedorEntradaDeDatos>

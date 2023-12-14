@@ -18,6 +18,8 @@ interface ArticuloCompra {
   }
 }
 
+// interface Props
+
 
 const Compras: React.FC = () => {
   const location = useLocation();
@@ -38,7 +40,6 @@ const Compras: React.FC = () => {
         const { item, cantidad } = itemCompras;
         const { id } = item;
         const nuevoDinero = usuario.dinero - precioTotal * cantidad;
-        console.log(item)
         // Adjust this line according to your store structure
         agregarComprasUsuarios(usuario.id, itemCompras);
         quitarArticulo(id); // Uncomment this line if needed
@@ -62,9 +63,11 @@ const Compras: React.FC = () => {
           <Th>{`Precio`}</Th>
         </Tr>
         </thead>
-        {Object.values(grupos).map((grupos) => {
-          const { cantidad, item } = grupos
-          const {precio, descuento, titulo} = item;
+        {Object.values(grupos)
+        .filter((itemCompras): itemCompras is ArticuloCompra => typeof itemCompras === 'object' && itemCompras !== null)
+        .map((itemCompras) => {
+          const { cantidad, item } = itemCompras;
+          const { precio, descuento, titulo } = item;
           const precio_con_descuento = precio - (precio * (descuento / 100));
           const precio_con_cantidad = precio_con_descuento * cantidad;
           return (
@@ -75,7 +78,7 @@ const Compras: React.FC = () => {
                 <Td>{precio_con_cantidad}</Td>
               </Tr>
             </tbody>
-          )
+          );
         })}
       </Table>
       {
