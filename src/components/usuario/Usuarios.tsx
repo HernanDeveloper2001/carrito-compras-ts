@@ -36,12 +36,6 @@ const Usuarios = () => {
             </ContenedorDeDatosUsuario>
           ))
         }
-        <ContenedorDeDatosUsuario>
-          <BotonLink 
-            to={"/usuario/nuevoUsuario/"}>
-            Agregar nuevo usuario
-          </BotonLink>
-        </ContenedorDeDatosUsuario>
       </Main>
       <BotonAtras to={"/"}>
         <Iconos>

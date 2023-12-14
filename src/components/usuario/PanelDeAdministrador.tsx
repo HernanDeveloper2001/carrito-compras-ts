@@ -35,7 +35,7 @@ const PanelDeAdministrador : React.FC = () => {
 
       <ContenedorEntradaDeDatos contenedorusuarioetiqueta={"true"}>
       <Text etiquetausuario={"true"}>
-            {`Compras: ${Object.values(compras).map((grupo: unknown) => {
+            {`Compras: ${Object.values(compras).map((grupo) => {
               if (typeof grupo === 'object' && grupo !== null) {
                 const { item } = grupo;
                 if (item) {
@@ -44,7 +44,7 @@ const PanelDeAdministrador : React.FC = () => {
                 }
               }
               return ''; // Manejar el caso en que 'item' no existe o es null
-            }).join(', ')}`}
+            }).join(' - ')}`}
           </Text>
       </ContenedorEntradaDeDatos>
 
