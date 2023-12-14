@@ -68,8 +68,13 @@ const Compras: React.FC = () => {
         .map((itemCompras) => {
           const { cantidad, item } = itemCompras;
           const { precio, descuento, titulo } = item;
-          const precio_con_descuento = precio - (precio * (descuento / 100));
+
+          // Manejar el caso en el que descuento es null
+          const descuentoReal = descuento ?? 0;
+
+          const precio_con_descuento = precio - (precio * (descuentoReal / 100));
           const precio_con_cantidad = precio_con_descuento * cantidad;
+          
           return (
             <tbody key={titulo}>
               <Tr>
